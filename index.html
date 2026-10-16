@@ -1,0 +1,1391 @@
+<!doctype html>
+<!--
+  Free website template by 8B · https://github.com/8bsite/pet-boarding-website-template
+  MIT License (code) · Photos: Unsplash License, see CREDITS.md · Fonts: Google Fonts (OFL)
+  One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free HTML pet boarding website template with GSAP scroll animations — Sill (live demo)</title>
+<meta name="description" content="Free HTML pet boarding website template with GSAP scroll animations, for a cattery, pet hotel or pet sitter. One file, no build step, MIT. By 8B.">
+<meta name="generator" content="8B Templates">
+<meta name="robots" content="noindex, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free HTML pet boarding website template with GSAP scroll animations — Sill (live demo)">
+<meta property="og:description" content="Free HTML pet boarding website template with GSAP scroll animations, for a cattery, pet hotel or pet sitter. One file, no build step, MIT. By 8B.">
+<meta property="og:image" content="https://8bsite.github.io/pet-boarding-website-template/previews/desktop.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2064%2064'%3E%3Crect%20width%3D'64'%20height%3D'64'%20rx%3D'14'%20fill%3D'%23cf6224'%2F%3E%3Ctext%20x%3D'32'%20y%3D'45'%20font-family%3D'Arial%2CHelvetica%2Csans-serif'%20font-size%3D'38'%20font-weight%3D'700'%20text-anchor%3D'middle'%20fill%3D'%230b0a0a'%3ES%3C%2Ftext%3E%3C%2Fsvg%3E" data-8b-placeholder="favicon">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/gabarito/v9/QGYtz_0dZAGKJJ4t3HtoW4U.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/rethinksans/v7/AMOWz4SDuXOMCPfdoglY9JQEVFi3.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* latin-ext */
+@font-face {
+  font-family: 'Gabarito';
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/gabarito/v9/QGYtz_0dZAGKJJ4t3HtmW4XUng.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Gabarito';
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/gabarito/v9/QGYtz_0dZAGKJJ4t3HtoW4U.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* fallback */
+@font-face {
+  font-family: 'Playwrite US Modern';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/playwriteusmodern/v11/H4cMBWmRlMXPhla3hmMaveiYz8nSDkIFLNIYl2TXUwK62Yp_Ng2G.woff2) format('woff2');
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rethinksans/v7/AMOWz4SDuXOMCPfdoglY9JQEWli389k.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Rethink Sans';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/rethinksans/v7/AMOWz4SDuXOMCPfdoglY9JQEVFi3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style data-8b-part="layers">@layer tokens, base, atoms, layout, sections, scenes;</style>
+<style data-8b-part="tokens">
+@layer tokens {
+:root {
+  --color-1: #0b0a0a;
+  --color-2: #f4f1ee;
+  --color-3: #cf6224;
+  --color-4: #6e1116;
+  --color-5: #5a3cd4;
+  --color-6: #bca59d;
+  --color-7: #a97d9c;
+  --color-8: #9b3418;
+  --color-9: #80a89b;
+  --color-10: #e3b867;
+  --font-1: "Gabarito", "Gabarito Fallback", Arial, sans-serif;
+  --font-2: "Rethink Sans", "Rethink Sans Fallback", Arial, sans-serif;
+  --font-3: "Playwrite US Modern", "Playwrite US Modern Fallback", Georgia, Arial, cursive;
+  --space-1: clamp(8px, 1.1vw, 16px);
+  --space-2: clamp(18px, 2.3vw, 34px);
+}
+}
+</style>
+<style data-8b-part="base">
+@layer base {
+/* font fallbacks: start */
+@font-face { font-family: "Gabarito Fallback"; src: local("Arial Black"), local("Arial-Black"), local("Arial Bold"); font-weight: 800 1000; size-adjust: 80.9%; ascent-override: 116.2%; descent-override: 32.1%; line-gap-override: 0%; }
+@font-face { font-family: "Gabarito Fallback"; src: local("Arial"), local("ArialMT"), local("Helvetica"); font-weight: 100 549; size-adjust: 98.7%; ascent-override: 95.3%; descent-override: 26.4%; line-gap-override: 0%; }
+@font-face { font-family: "Rethink Sans Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"); font-weight: 550 799; size-adjust: 94.4%; ascent-override: 104.9%; descent-override: 32.9%; line-gap-override: 0%; }
+@font-face { font-family: "Rethink Sans Fallback"; src: local("Arial"), local("ArialMT"), local("Helvetica"); font-weight: 100 549; size-adjust: 103.9%; ascent-override: 95.3%; descent-override: 29.8%; line-gap-override: 0%; }
+@font-face { font-family: "Playwrite US Modern Fallback"; src: local("Arial"), local("ArialMT"), local("Helvetica"); font-weight: 100 549; size-adjust: 116.5%; ascent-override: 115.9%; descent-override: 37.8%; line-gap-override: 0%; }
+/* font fallbacks: end */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { margin: 0; background: var(--color-1); color: var(--color-2); font-family: var(--font-2); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  img, svg { display: block; max-width: 100%; }
+  h1, h2, h3, p, ol, ul, figure, blockquote, address, dl, dd { margin: 0; }
+  ol, ul { padding: 0; list-style: none; }
+  address { font-style: normal; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis-stopped { overflow: clip; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+}
+</style>
+<style data-8b-part="system">
+@layer atoms {
+.m-text { font-family: var(--font-2); font-size: clamp(16px, 1.15vw, 18px); font-weight: 400; line-height: 1.5; letter-spacing: 0; text-transform: none; font-style: normal; }
+.m-text-2 { font-family: var(--font-1); font-size: clamp(46px, 7.2vw, 116px); font-weight: 900; line-height: .9; letter-spacing: -.035em; text-transform: none; font-style: normal; }
+.m-text-3 { font-family: var(--font-1); font-size: clamp(38px, 5vw, 78px); font-weight: 800; line-height: .94; letter-spacing: -.03em; text-transform: none; font-style: normal; }
+.m-text-4 { font-family: var(--font-2); font-size: 13px; font-weight: 600; line-height: 1.35; letter-spacing: .06em; text-transform: uppercase; font-style: normal; }
+.m-text-5 { font-family: var(--font-3); font-size: clamp(15px, 1.15vw, 17px); font-weight: 300; line-height: 1.9; letter-spacing: 0; text-transform: none; font-style: normal; }
+.m-text-6 { font-family: var(--font-1); font-size: clamp(24px, 2.3vw, 34px); font-weight: 800; line-height: 1.02; letter-spacing: -.02em; text-transform: none; font-style: normal; }
+.m-text-7 { font-family: var(--font-2); font-size: clamp(18px, 1.55vw, 22px); font-weight: 400; line-height: 1.4; letter-spacing: -.005em; text-transform: none; font-style: normal; }
+.m-text-8 { font-family: var(--font-1); font-size: clamp(40px, 4.6vw, 72px); font-weight: 500; line-height: .95; letter-spacing: -.025em; text-transform: none; font-style: normal; }
+
+.m-btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 26px; border: 0; background: var(--color-1); color: var(--color-2); font-family: var(--font-2); font-size: 16px; font-weight: 600; line-height: 1.2; letter-spacing: .01em; text-decoration: none; cursor: pointer; }
+.m-btn::before { content: ""; position: absolute; z-index: -1; left: -12%; right: -12%; top: 0; height: 150%; border-radius: 50% 50% 0 0 / 34% 34% 0 0; background: var(--color-10); transform: translateY(101%); transition: transform .5s cubic-bezier(.25, .8, .25, 1); }
+.m-btn__label { transition: color .3s; }
+.m-btn:focus-visible { outline-color: var(--color-1); }
+@media (hover: hover) {
+  .m-btn:hover::before { transform: translateY(-12%); }
+  .m-btn:hover .m-btn__label { color: var(--color-1); }
+}
+.m-btn-2 { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border: 0; background: var(--color-2); color: var(--color-1); font-family: var(--font-2); font-size: 15px; font-weight: 600; line-height: 1.2; letter-spacing: .01em; text-decoration: none; cursor: pointer; }
+.m-btn-2::before { content: ""; position: absolute; z-index: -1; left: -12%; right: -12%; top: 0; height: 150%; border-radius: 50% 50% 0 0 / 34% 34% 0 0; background: var(--color-3); transform: translateY(101%); transition: transform .5s cubic-bezier(.25, .8, .25, 1); }
+.m-btn-2:focus-visible { outline-color: var(--color-2); }
+@media (hover: hover) {
+  .m-btn-2:hover::before { transform: translateY(-12%); }
+}
+.m-link { color: inherit; font-weight: 600; text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 100% 2px; background-position: 100% 100%; padding-bottom: 3px; }
+@keyframes m-link-swipe { 0% { background-size: 100% 2px; background-position: 100% 100%; } 45% { background-size: 0% 2px; background-position: 100% 100%; } 46% { background-size: 0% 2px; background-position: 0% 100%; } 100% { background-size: 100% 2px; background-position: 0% 100%; } }
+@media (hover: hover) {
+  .m-link:hover { animation: m-link-swipe .7s cubic-bezier(.6, 0, .3, 1); }
+}
+.m-iconbtn { position: relative; display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 2px solid currentColor; background: transparent; color: var(--color-2); cursor: pointer; }
+.m-iconbtn__icon { position: relative; width: 18px; height: 12px; transition: transform .45s cubic-bezier(.3, .8, .3, 1); }
+.m-iconbtn__icon::before, .m-iconbtn__icon::after { content: ""; position: absolute; left: 0; right: 0; height: 3px; background: currentColor; }
+.m-iconbtn__icon::before { top: 0; }
+.m-iconbtn__icon::after { bottom: 0; }
+@media (hover: hover) {
+  .m-iconbtn:hover .m-iconbtn__icon { transform: rotate(90deg); }
+}
+
+.m-surface { background: var(--color-3); color: var(--color-1); }
+.m-surface-2 { background: var(--color-4); color: var(--color-2); }
+.m-surface-3 { background: var(--color-5); color: var(--color-2); }
+.m-surface-4 { background: var(--color-6); color: var(--color-1); }
+.m-surface-5 { background: var(--color-7); color: var(--color-1); }
+.m-surface-6 { background: var(--color-8); color: var(--color-2); }
+.m-surface-7 { background: var(--color-9); color: var(--color-1); }
+.m-surface-8 { background: var(--color-10); color: var(--color-1); }
+
+.m-photo { position: relative; overflow: hidden; background: var(--color-1); }
+.m-photo img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.m-field { display: grid; gap: 6px; }
+.m-field__label { font-family: var(--font-2); font-size: 13px; font-weight: 600; line-height: 1.3; letter-spacing: .06em; text-transform: uppercase; }
+.m-field__input { width: 100%; min-height: 48px; padding: 11px 14px; border: 2px solid var(--color-1); border-radius: 0; background: transparent; color: var(--color-1); font-family: var(--font-2); font-size: 17px; font-weight: 400; line-height: 1.4; }
+.m-field__input:focus-visible { outline: 3px solid var(--color-1); outline-offset: 2px; }
+textarea.m-field__input { min-height: 104px; resize: vertical; }
+.m-curl { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; overflow: visible; }
+.m-curl path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+}
+</style>
+<style data-8b-part="layout">
+@layer layout {
+  .u-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+</style>
+<style data-8b-part="section:nav">
+@layer sections {
+  #nav .nav__bar { position: fixed; z-index: 50; top: 0; left: 0; right: 0; height: 64px; display: flex; align-items: center; gap: 28px; padding: 0 var(--space-1) 0 calc(var(--space-1) + 10px); background: var(--color-1); color: var(--color-2); transition: transform .4s cubic-bezier(.3, .7, .2, 1); }
+  #nav[data-hidden] .nav__bar { transform: translateY(-100%); }
+  #nav .nav__brand { font-family: var(--font-1); font-size: 30px; font-weight: 900; letter-spacing: -.04em; line-height: 1; text-decoration: none; }
+  #nav .nav__links { display: flex; gap: 26px; margin-left: auto; font-size: 15px; }
+  #nav .nav__toggle { display: none; }
+  #nav .nav__menu:not([hidden]) { position: fixed; z-index: 60; inset: 0; display: grid; grid-template-rows: auto 1fr; gap: var(--space-1); padding: var(--space-1); background: var(--color-1); overflow-y: auto; }
+  #nav .nav__close { justify-self: end; margin: 2px 2px 0 0; }
+  #nav .nav__close .m-iconbtn__icon { transform: rotate(45deg); height: 18px; }
+  #nav .nav__close .m-iconbtn__icon::before, #nav .nav__close .m-iconbtn__icon::after { top: 50%; bottom: auto; margin-top: -1.5px; }
+  #nav .nav__close .m-iconbtn__icon::after { transform: rotate(90deg); }
+  #nav .nav__menu ul { display: grid; gap: var(--space-1); grid-auto-rows: minmax(64px, 1fr); }
+  #nav .nav__menu a { display: flex; align-items: flex-end; height: 100%; padding: 16px 18px; font-family: var(--font-1); font-size: 34px; font-weight: 800; letter-spacing: -.02em; line-height: 1; text-decoration: none; }
+  @media (max-width: 860px) {
+    #nav .nav__bar { height: 56px; gap: 10px; }
+    #nav .nav__links { display: none; }
+    #nav .nav__book { margin-left: auto; }
+    #nav .nav__toggle { display: inline-grid; }
+  }
+}
+</style>
+<style data-8b-part="section:opening">
+@layer sections {
+  #opening { position: relative; overflow: clip; }
+  #opening .op-s1 { position: relative; z-index: 1; height: 100svh; min-height: 640px; padding: calc(64px + var(--space-1)) var(--space-1) var(--space-1); }
+  #opening .op-grid { height: 100%; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-1); }
+  #opening .op-cell { display: grid; min-width: 0; min-height: 0; }
+  #opening .op-panel { position: relative; min-height: 0; padding: var(--space-2); display: flex; flex-direction: column; gap: 14px; }
+  #opening .op-a { grid-column: 1 / 9; grid-row: 1; }
+  #opening .op-a .op-panel { justify-content: flex-end; }
+  #opening .op-title { font-size: clamp(46px, 8.6vw, 136px); max-width: 7em; }
+  #opening .op-b { grid-column: 9 / 13; grid-row: 1 / 3; }
+  #opening .op-b .op-panel { padding: 0; gap: 0; }
+  #opening .op-photo { flex: 1; min-height: 0; }
+  #opening .op-photo img { width: 124%; left: -12%; object-position: 50% 30%; }
+  #opening .op-ledge { padding: 16px var(--space-2) 18px; }
+  #opening .op-c { grid-column: 1 / 4; grid-row: 2; }
+  #opening .op-c .op-panel { justify-content: flex-end; }
+  #opening .op-d { grid-column: 4 / 7; grid-row: 2; }
+  #opening .op-d .op-panel { justify-content: space-between; }
+  #opening .op-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  #opening .op-curl { position: absolute; right: 9%; top: 11%; width: clamp(60px, 6.6vw, 104px); height: auto; transform-origin: 50% 100%; }
+  #opening .op-d .m-text-4 { max-width: 10em; }
+  #opening .op-e { grid-column: 7 / 9; grid-row: 2; }
+  #opening .op-e .op-panel { justify-content: space-between; }
+  #opening .op-e .m-text { font-size: 16px; }
+
+  #opening .op-s2 { position: relative; z-index: 3; min-height: 100svh; padding: calc(64px + var(--space-1)) var(--space-1) var(--space-1); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); }
+  #opening .op-s2__text { position: relative; z-index: 1; grid-column: 1 / 5; align-self: start; display: grid; gap: 22px; justify-items: start; padding: 0 var(--space-2) var(--space-2) 10px; }
+  #opening .op-house { position: relative; z-index: 1; grid-column: 5 / 13; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: var(--space-1); }
+  #opening .op-win { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 150px; clip-path: inset(0 0 0 0); }
+  #opening .op-win__photo { position: absolute; inset: 0 0 42px; }
+  #opening .op-win__label { position: absolute; left: 0; right: 0; bottom: 0; height: 42px; padding: 10px 12px 0; border-top: var(--space-1) solid var(--color-1); }
+  #opening .op-win--plain::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 42px; width: var(--space-1); margin-left: calc(var(--space-1) / -2); background: var(--color-1); }
+  #opening .op-win--plain::after { content: ""; position: absolute; left: 0; right: 0; top: 40%; height: var(--space-1); background: var(--color-1); }
+  #opening .op-ink { display: none; position: absolute; z-index: 0; top: 0; left: -3%; width: 106%; height: 220svh; pointer-events: none; color: var(--color-1); }
+  #opening .op-ink__hill { width: 100%; height: 100%; fill: currentColor; }
+  #opening .op-ink__curl { position: absolute; left: 16%; top: -17svh; width: clamp(110px, 12vw, 190px); height: auto; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #opening .op-a .op-panel { animation: op-from-left .9s cubic-bezier(.2, .7, .2, 1) backwards; }
+    #opening .op-b .op-panel { animation: op-from-right 1s .05s cubic-bezier(.2, .7, .2, 1) backwards; }
+    #opening .op-c .op-panel { animation: op-from-below .9s .1s cubic-bezier(.2, .7, .2, 1) backwards; }
+    #opening .op-d .op-panel { animation: op-from-below .9s .16s cubic-bezier(.2, .7, .2, 1) backwards; }
+    #opening .op-e .op-panel { animation: op-from-above .9s .2s cubic-bezier(.2, .7, .2, 1) backwards; }
+    #opening .op-photo img { animation: op-look 6s ease-in-out infinite alternate; }
+    #opening .op-curl { animation: op-sway 2.6s ease-in-out infinite alternate; }
+    #opening .op-s1[data-paused] .op-photo img, #opening .op-s1[data-paused] .op-curl { animation-play-state: paused; }
+  }
+  @keyframes op-from-left { from { transform: translateX(-32px); } }
+  @keyframes op-from-right { from { transform: translateX(32px); } }
+  @keyframes op-from-below { from { transform: translateY(32px); } }
+  @keyframes op-from-above { from { transform: translateY(-32px); } }
+  @keyframes op-look { from { transform: translateX(-8%); } to { transform: translateX(8%); } }
+  @keyframes op-sway { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+
+  @media (max-width: 767.98px) {
+    #opening .op-s1 { height: auto; min-height: 100svh; padding-top: calc(56px + var(--space-1)); }
+    #opening .op-grid { height: auto; min-height: calc(100svh - 56px - 2 * var(--space-1)); grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: auto minmax(190px, 1fr) auto auto; }
+    #opening .op-title { font-size: clamp(40px, 12.4vw, 60px); }
+    #opening .op-a { grid-column: 1 / 7; grid-row: 1; }
+    #opening .op-b { grid-column: 1 / 4; grid-row: 2; }
+    #opening .op-ledge { padding: 10px 14px 12px; }
+    #opening .op-e { grid-column: 4 / 7; grid-row: 2; }
+    #opening .op-e .op-panel { gap: 8px; }
+    #opening .op-e .m-text { font-size: 15px; line-height: 1.4; }
+    #opening .op-c { grid-column: 1 / 7; grid-row: 3; }
+    #opening .op-d { grid-column: 1 / 7; grid-row: 4; }
+    #opening .op-d .op-panel { gap: 14px; }
+    #opening .op-curl { width: 44px; top: 14px; right: 18px; }
+    #opening .op-s2 { padding-top: calc(56px + var(--space-1)); grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    #opening .op-s2__text { grid-column: 1; align-self: start; padding: 10px 6px 18px; gap: 16px; }
+    #opening .op-house { grid-column: 1; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(104px, 1fr)); }
+    #opening .op-win { min-height: 104px; }
+    #opening .op-win__photo { bottom: 34px; }
+    #opening .op-win--plain::before { bottom: 34px; }
+    #opening .op-win__label { height: 34px; padding: 7px 8px 0; font-size: 11px; letter-spacing: .04em; }
+    #opening .op-ink { height: 240svh; }
+    #opening .op-ink__curl { left: 12%; top: -9svh; width: 84px; }
+  }
+}
+</style>
+<style data-8b-part="scene-style:opening">
+@layer scenes {
+  @media (prefers-reduced-motion: no-preference) {
+    #opening[data-ink] .op-ink { display: block; }
+  }
+}
+</style>
+<style data-8b-part="section:rooms">
+@layer sections {
+  #rooms { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #rooms .rm-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto minmax(320px, 42svh) minmax(280px, 36svh); gap: var(--space-1); }
+  #rooms .rm-head { grid-column: 1 / 9; grid-row: 1; padding: var(--space-2); display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px 36px; align-items: end; }
+  #rooms .rm-room { position: relative; clip-path: inset(0 0 0 0); }
+  #rooms .rm-body { padding: var(--space-2); display: flex; flex-direction: column; gap: 12px; }
+  #rooms .rm-price { margin-top: auto; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; }
+  #rooms .rm-price strong { font-family: var(--font-1); font-size: clamp(26px, 2.4vw, 36px); font-weight: 800; letter-spacing: -.02em; }
+  #rooms .rm-ledge { grid-column: 1 / 9; grid-row: 2; display: grid; grid-template-columns: 1fr 1.15fr; }
+  #rooms .rm-ledge .m-photo { order: 2; }
+  #rooms .rm-tower { grid-column: 9 / 13; grid-row: 1 / 4; display: grid; grid-template-rows: minmax(0, 1.1fr) auto; }
+  #rooms .rm-tower .rm-body { display: grid; grid-template-columns: auto 1fr; gap: 12px 22px; align-content: start; }
+  #rooms .rm-tower .rm-name { grid-row: 1 / 4; align-self: start; width: max-content; font-size: clamp(40px, 4.4vw, 68px); margin-block: calc((var(--len) * .5em - 1.02em) / 2); margin-inline: calc((var(--len) * -.5em + 1.02em) / 2); transform: rotate(-90deg); }
+  #rooms .rm-tower .rm-body > :not(.rm-name) { grid-column: 2; }
+  #rooms .rm-burrow { grid-column: 1 / 6; grid-row: 3; display: grid; grid-template-columns: 1fr 1fr; }
+  #rooms .rm-every { grid-column: 6 / 9; grid-row: 3; padding: var(--space-2); display: flex; flex-direction: column; gap: 14px; }
+  #rooms .rm-every ul { display: grid; gap: 8px; }
+  #rooms .rm-every li { padding-left: 22px; position: relative; }
+  #rooms .rm-every li::before { content: ""; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; background: var(--color-1); }
+  @media (max-width: 1100px) and (min-width: 768px) {
+    #rooms .rm-head { grid-template-columns: 1fr; }
+    #rooms .rm-burrow { grid-column: 1 / 9; }
+    #rooms .rm-every { grid-column: 1 / 9; grid-row: 4; }
+    #rooms .rm-tower { grid-row: 1 / 5; }
+    #rooms .rm-grid { grid-template-rows: auto minmax(320px, 42svh) minmax(280px, 36svh) auto; }
+  }
+  @media (max-width: 767.98px) {
+    #rooms .rm-grid { grid-template-columns: 1fr; grid-template-rows: none; }
+    #rooms .rm-head, #rooms .rm-ledge, #rooms .rm-tower, #rooms .rm-burrow, #rooms .rm-every { grid-column: 1; grid-row: auto; }
+    #rooms .rm-head { grid-template-columns: 1fr; }
+    #rooms .rm-ledge, #rooms .rm-burrow { grid-template-columns: 1fr; }
+    #rooms .rm-ledge .m-photo { order: 0; }
+    #rooms .rm-ledge .m-photo, #rooms .rm-burrow .m-photo { aspect-ratio: 16 / 10; }
+    #rooms .rm-tower { grid-template-rows: none; }
+    #rooms .rm-tower .m-photo { aspect-ratio: 4 / 5; }
+  }
+}
+</style>
+<style data-8b-part="section:letters">
+@layer sections {
+  #letters { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #letters .lt-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); }
+  #letters .lt-intro { grid-column: 1 / 5; grid-row: 1 / 3; position: relative; padding: 10px var(--space-2) var(--space-2) 10px; display: flex; flex-direction: column; gap: 22px; }
+  #letters .lt-intro .m-curl { width: clamp(70px, 7vw, 110px); height: auto; margin-top: auto; color: var(--color-3); }
+  #letters .lt-list { grid-column: 5 / 13; grid-row: 1 / 3; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-1); }
+  #letters .lt-letter { display: grid; grid-template-rows: auto 1fr; }
+  #letters .lt-letter:first-child { grid-column: 1 / 3; grid-template-columns: .9fr 1.1fr; grid-template-rows: none; }
+  #letters .lt-photo { aspect-ratio: 4 / 3; }
+  #letters .lt-letter:first-child .lt-photo { aspect-ratio: auto; min-height: 340px; }
+  #letters .lt-body { padding: var(--space-2); display: flex; flex-direction: column; gap: 12px; }
+  #letters .lt-sign { margin-top: auto; }
+  @media (max-width: 900px) {
+    #letters .lt-intro { grid-column: 1 / 13; grid-row: 1; }
+    #letters .lt-list { grid-column: 1 / 13; grid-row: 2; }
+  }
+  @media (max-width: 767.98px) {
+    #letters .lt-list { grid-template-columns: 1fr; }
+    #letters .lt-letter:first-child { grid-column: 1; grid-template-columns: 1fr; }
+    #letters .lt-letter:first-child .lt-photo { min-height: 0; aspect-ratio: 4 / 3; }
+    #letters .lt-intro .m-curl { position: absolute; right: 8px; top: 0; width: 56px; }
+    #letters .lt-intro h2 { padding-right: 60px; }
+  }
+}
+</style>
+<style data-8b-part="section:day">
+@layer sections {
+  #day { position: relative; padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #day .dy-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  #day .dy-rail { min-width: 0; }
+  #day .dy-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 40px; padding: 0 10px 10px; }
+  #day .dy-head .m-text { max-width: 36ch; }
+  #day .dy-sky { display: none; }
+  #day .dy-track { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-1); }
+  #day .dy-hour { display: flex; flex-direction: column; gap: 10px; padding: var(--space-2) var(--space-2) 0; }
+  #day .dy-time { font-family: var(--font-1); font-size: clamp(40px, 4.2vw, 64px); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  #day .dy-hour .m-text { max-width: 34ch; }
+  #day .dy-photo { aspect-ratio: 4 / 3; margin: auto calc(-1 * var(--space-2)) 0; }
+  @media (max-width: 1000px) { #day .dy-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { #day .dy-track { grid-template-columns: 1fr; } }
+}
+</style>
+<style data-8b-part="scene-style:day">
+@layer scenes {
+  @media (prefers-reduced-motion: no-preference) {
+    #day[data-track] { padding: 0; }
+    #day[data-track] .dy-stage { height: 100svh; padding: calc(64px + var(--space-1)) var(--space-1) var(--space-1); grid-template-rows: auto minmax(0, .5fr) minmax(0, 1fr); overflow: hidden; }
+    #day[data-track] .dy-sky { display: block; position: relative; overflow: hidden; background: var(--color-3); }
+    #day[data-track] .dy-disc { position: absolute; left: 0; top: 0; width: clamp(84px, 15vmin, 160px); aspect-ratio: 1; border-radius: 50%; background: var(--color-1); }
+    #day[data-track] .dy-rail { min-height: 0; }
+    #day[data-track] .dy-track { display: flex; width: max-content; height: 100%; }
+    #day[data-track] .dy-hour { width: clamp(290px, 31vw, 450px); padding-top: clamp(16px, 2vw, 28px); gap: 6px; }
+    #day[data-track] .dy-photo { aspect-ratio: auto; flex: 1 1 0; min-height: 90px; }
+  }
+  @media (prefers-reduced-motion: no-preference) and (max-width: 767.98px) {
+    #day[data-track] .dy-stage { padding-top: calc(56px + var(--space-1)); grid-template-rows: auto minmax(0, .38fr) minmax(0, 1fr); }
+    #day[data-track] .dy-hour { width: 80vw; }
+    #day[data-track] .dy-head .m-text { display: none; }
+  }
+}
+</style>
+<style data-8b-part="section:sitters">
+@layer sections {
+  #sitters { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #sitters .st-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); margin-bottom: clamp(28px, 5svh, 56px); padding: 0 10px; }
+  #sitters .st-head h2 { grid-column: 1 / 7; }
+  #sitters .st-head p { grid-column: 8 / 12; align-self: end; }
+  #sitters .st-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-1); align-items: start; }
+  #sitters .st-person:nth-child(2) { margin-top: 14svh; }
+  #sitters .st-person:nth-child(3) { margin-top: 5svh; }
+  #sitters .st-person:nth-child(4) { margin-top: 19svh; }
+  #sitters .st-photo { aspect-ratio: 3 / 4; }
+  #sitters .st-ledge { padding: 16px var(--space-2) var(--space-2); display: grid; gap: 6px; }
+  @media (max-width: 900px) {
+    #sitters .st-head h2, #sitters .st-head p { grid-column: 1 / 13; }
+    #sitters .st-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #sitters .st-person:nth-child(n) { margin-top: 0; }
+    #sitters .st-person:nth-child(even) { margin-top: 9svh; }
+    #sitters .st-person:nth-child(3) { margin-top: -9svh; }
+  }
+  @media (max-width: 767.98px) {
+    #sitters .st-ledge { padding: 12px 12px 14px; }
+    #sitters .st-ledge .m-text { font-size: 15px; line-height: 1.4; }
+  }
+}
+</style>
+<style data-8b-part="section:courtyard">
+@layer sections {
+  #courtyard { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); overflow-x: clip; }
+  #courtyard .cy-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); }
+  #courtyard .cy-window { --cy-g: var(--space-1); grid-column: 1 / 9; grid-row: 1 / 3; position: relative; aspect-ratio: 3 / 2; }
+  #courtyard .cy-pane { position: absolute; inset: 0;
+    clip-path: inset(calc(var(--r) * ((100% - var(--cy-g)) / 2 + var(--cy-g))) calc((2 - var(--c)) * ((100% - 2 * var(--cy-g)) / 3 + var(--cy-g))) calc((1 - var(--r)) * ((100% - var(--cy-g)) / 2 + var(--cy-g))) calc(var(--c) * ((100% - 2 * var(--cy-g)) / 3 + var(--cy-g)))); }
+  #courtyard .cy-pane img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #courtyard .cy-tint { position: absolute; inset: 0; opacity: 0; }
+  #courtyard .cy-pane:nth-child(1) .cy-tint { background: var(--color-3); }
+  #courtyard .cy-pane:nth-child(2) .cy-tint { background: var(--color-5); }
+  #courtyard .cy-pane:nth-child(3) .cy-tint { background: var(--color-10); }
+  #courtyard .cy-pane:nth-child(4) .cy-tint { background: var(--color-7); }
+  #courtyard .cy-pane:nth-child(5) .cy-tint { background: var(--color-4); }
+  #courtyard .cy-pane:nth-child(6) .cy-tint { background: var(--color-9); }
+  #courtyard .cy-text { grid-column: 9 / 13; grid-row: 1; padding: var(--space-2); display: flex; flex-direction: column; gap: 16px; }
+  #courtyard .cy-text ul { display: grid; gap: 6px; margin-top: auto; }
+  #courtyard .cy-birds { grid-column: 9 / 13; grid-row: 2; display: grid; grid-template-rows: 1fr auto; min-height: 220px; }
+  #courtyard .cy-birds p { padding: 12px var(--space-2) 14px; }
+  @media (max-width: 900px) {
+    #courtyard .cy-text { grid-column: 1 / 13; grid-row: 1; }
+    #courtyard .cy-window { grid-column: 1 / 13; grid-row: 2; }
+    #courtyard .cy-birds { grid-column: 1 / 13; grid-row: 3; }
+    #courtyard .cy-birds .m-photo { aspect-ratio: 16 / 9; }
+  }
+  @media (max-width: 767.98px) {
+    #courtyard .cy-window { aspect-ratio: 3 / 4; }
+    #courtyard .cy-pane {
+      clip-path: inset(calc(var(--mr) * ((100% - 2 * var(--cy-g)) / 3 + var(--cy-g))) calc((1 - var(--mc)) * ((100% - var(--cy-g)) / 2 + var(--cy-g))) calc((2 - var(--mr)) * ((100% - 2 * var(--cy-g)) / 3 + var(--cy-g))) calc(var(--mc) * ((100% - var(--cy-g)) / 2 + var(--cy-g)))); }
+  }
+}
+</style>
+<style data-8b-part="section:visit">
+@layer sections {
+  #visit { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #visit .vs-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(7, minmax(74px, auto)); gap: var(--space-1); }
+  #visit .vs-head { grid-column: 1 / 3; grid-row: 1 / 4; display: flex; flex-direction: column; gap: 18px; padding: 0 10px 10px; align-self: start; }
+  #visit .vs-step { display: flex; flex-direction: column; gap: 10px; padding: var(--space-2); }
+  #visit .vs-step:nth-of-type(1) { grid-column: 1; grid-row: 5 / 8; }
+  #visit .vs-step:nth-of-type(2) { grid-column: 2; grid-row: 4 / 8; }
+  #visit .vs-step:nth-of-type(3) { grid-column: 3; grid-row: 3 / 8; }
+  #visit .vs-step:nth-of-type(4) { grid-column: 4; grid-row: 1 / 8; }
+  #visit .vs-num { font-family: var(--font-1); font-size: clamp(48px, 5vw, 80px); font-weight: 900; line-height: .9; letter-spacing: -.04em; }
+  #visit .vs-step .m-text { max-width: 30ch; }
+  #visit .vs-photo { flex: 1 1 auto; min-height: 200px; margin: 0 calc(-1 * var(--space-2)) 8px; order: -1; margin-top: calc(-1 * var(--space-2)); }
+  #visit .vs-photo img { object-position: 50% 22%; }
+  #visit .vs-curl { width: clamp(60px, 6vw, 96px); height: auto; color: var(--color-10); }
+  @media (max-width: 767.98px) {
+    #visit .vs-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: none; }
+    #visit .vs-head { grid-column: 1 / 9; grid-row: auto; }
+    #visit .vs-step:nth-of-type(n) { grid-row: auto; }
+    #visit .vs-step:nth-of-type(1) { grid-column: 1 / 7; }
+    #visit .vs-step:nth-of-type(2) { grid-column: 2 / 8; }
+    #visit .vs-step:nth-of-type(3) { grid-column: 3 / 9; }
+    #visit .vs-step:nth-of-type(4) { grid-column: 1 / 9; }
+    #visit .vs-photo { min-height: 0; aspect-ratio: 16 / 10; flex: none; }
+    #visit .vs-curl { position: absolute; right: 18px; top: 4px; width: 48px; }
+    #visit .vs-head { position: relative; padding-right: 70px; }
+  }
+}
+</style>
+<style data-8b-part="section:quiet">
+@layer sections {
+  #quiet { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); overflow-x: clip; }
+  #quiet .qt-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); margin-bottom: clamp(28px, 6svh, 64px); padding: 0 10px; }
+  #quiet .qt-head h2 { grid-column: 1 / 7; }
+  #quiet .qt-head p { grid-column: 8 / 12; align-self: end; }
+  #quiet .qt-rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-1); }
+  #quiet .qt-rule { min-height: clamp(280px, 40svh, 380px); padding: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; gap: 22px; }
+  #quiet .qt-word { font-size: clamp(40px, 4.6vw, 74px); }
+  @media (max-width: 900px) {
+    #quiet .qt-head h2, #quiet .qt-head p { grid-column: 1 / 13; }
+    #quiet .qt-rules { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 767.98px) {
+    #quiet .qt-rule { min-height: 240px; padding: 16px; }
+    #quiet .qt-word { font-size: clamp(32px, 10vw, 44px); }
+    #quiet .qt-rule .m-text { font-size: 15px; line-height: 1.4; }
+  }
+}
+</style>
+<style data-8b-part="section:faq">
+@layer sections {
+  #faq { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
+  #faq .fq-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--space-1); align-items: stretch; }
+  #faq .fq-head { grid-column: 1 / 6; padding: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; gap: 28px; min-height: 380px; }
+  #faq .fq-list { grid-column: 6 / 13; display: grid; gap: var(--space-1); align-content: start; }
+  #faq .fq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px var(--space-2); cursor: pointer; list-style: none; }
+  #faq .fq-item summary::-webkit-details-marker { display: none; }
+  #faq .fq-item summary::after { content: ""; flex: none; width: 18px; height: 18px; background: linear-gradient(currentColor, currentColor) center / 100% 3px no-repeat, linear-gradient(currentColor, currentColor) center / 3px 100% no-repeat; transition: transform .35s; }
+  #faq .fq-item[open] summary::after { transform: rotate(45deg); }
+  #faq .fq-item summary:focus-visible { outline-offset: -6px; }
+  #faq .fq-a { padding: 0 var(--space-2) var(--space-2); max-width: 62ch; }
+  @media (max-width: 900px) {
+    #faq .fq-head, #faq .fq-list { grid-column: 1 / 13; }
+    #faq .fq-head { min-height: 0; }
+  }
+}
+</style>
+<style data-8b-part="section:contact">
+@layer sections {
+  #contact { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); overflow: clip; }
+  #contact .ct-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto auto; gap: var(--space-1); }
+  #contact .ct-side { position: relative; padding: var(--space-2); display: flex; flex-direction: column; gap: 14px; }
+  #contact .ct-call { grid-column: 1 / 3; grid-row: 1 / 4; justify-content: space-between; align-items: flex-start; }
+  #contact .ct-write { grid-column: 11 / 13; grid-row: 1 / 4; justify-content: space-between; align-items: flex-end; text-align: right; }
+  #contact .ct-visit { grid-column: 3 / 11; grid-row: 1; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+  #contact .ct-hours { grid-column: 3 / 11; grid-row: 3; flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+  #contact .ct-label { font-size: clamp(44px, 5.4vw, 84px); }
+  #contact .ct-call .ct-label, #contact .ct-write .ct-label { width: max-content; align-self: center; margin-block: calc((var(--len) * .56em - .94em) / 2); margin-inline: calc((var(--len) * -.56em + .94em) / 2); }
+  #contact .ct-call .ct-label { transform: rotate(-90deg); }
+  #contact .ct-write .ct-label { transform: rotate(90deg); }
+  #contact .ct-detail { display: grid; gap: 4px; }
+  #contact .ct-write .ct-detail { justify-items: end; }
+  #contact .ct-form { grid-column: 3 / 11; grid-row: 2; padding: var(--space-2); }
+  #contact .ct-form form { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px var(--space-2); }
+  #contact .ct-form h2 { grid-column: 1 / 7; }
+  #contact .ct-form .m-field { grid-column: span 3; }
+  #contact .ct-form .ct-short { grid-column: span 2; }
+  #contact .ct-form .ct-wide { grid-column: 1 / 7; }
+  #contact .ct-send { grid-column: 1 / 7; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+  @media (max-width: 1100px) {
+    #contact .ct-call { grid-column: 1 / 3; }
+    #contact .ct-form .ct-short { grid-column: span 3; }
+  }
+  @media (max-width: 900px) {
+    #contact .ct-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+    #contact .ct-call, #contact .ct-write, #contact .ct-visit, #contact .ct-hours { grid-row: auto; flex-direction: column; justify-content: space-between; align-items: flex-start; text-align: left; min-height: 150px; }
+    #contact .ct-call { grid-column: 1; grid-row: 1; }
+    #contact .ct-write { grid-column: 2; grid-row: 1; }
+    #contact .ct-visit { grid-column: 1; grid-row: 2; }
+    #contact .ct-hours { grid-column: 2; grid-row: 2; }
+    #contact .ct-write .ct-detail { justify-items: start; }
+    #contact .ct-call .ct-label, #contact .ct-write .ct-label { width: auto; margin: 0; align-self: flex-start; transform: none; }
+    #contact .ct-label { font-size: clamp(34px, 9vw, 52px); }
+    #contact .ct-form { grid-column: 1 / 3; grid-row: 3; }
+    #contact .ct-form .m-field, #contact .ct-form .ct-short { grid-column: 1 / 7; }
+  }
+  @media (max-width: 420px) {
+    #contact .ct-side { padding: 14px; }
+    #contact .ct-detail .m-text { font-size: 15px; overflow-wrap: anywhere; }
+  }
+}
+</style>
+<style data-8b-part="section:footer">
+@layer sections {
+  #footer { padding: clamp(64px, 11svh, 120px) var(--space-1) 0; color: var(--color-2); }
+  #footer .ft-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px var(--space-1); padding: 0 10px; }
+  #footer .ft-nav { grid-column: 1 / 5; }
+  #footer .ft-nav ul { display: grid; gap: 10px; }
+  #footer .ft-contact { grid-column: 5 / 9; display: grid; gap: 10px; align-content: start; justify-items: start; }
+  #footer .ft-note { grid-column: 9 / 13; display: grid; gap: 10px; align-content: start; }
+  #footer .ft-mark { position: relative; overflow: hidden; margin-top: clamp(40px, 8svh, 90px); }
+  #footer .ft-curl { position: absolute; left: 66%; bottom: 8%; height: 78%; width: auto; color: var(--color-3); stroke-width: 5; }
+  #footer .ft-word { color: var(--color-3); font-size: min(46vw, calc((100vw - 2 * var(--space-1)) / (var(--len) * .52))); line-height: 1; padding-top: .02em; }
+  @media (max-width: 767.98px) {
+    #footer .ft-nav, #footer .ft-contact, #footer .ft-note { grid-column: 1 / 13; }
+  }
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Free HTML pet boarding website template with GSAP scroll animations — Sill","description":"Free HTML pet boarding website template with GSAP scroll animations, for a cattery, pet hotel or pet sitter. One file, no build step, MIT. By 8B.","url":"https://8bsite.github.io/pet-boarding-website-template/","codeRepository":"https://github.com/8bsite/pet-boarding-website-template","license":"https://opensource.org/licenses/MIT","programmingLanguage":["HTML","CSS","JavaScript"],"isAccessibleForFree":true,"image":"https://8bsite.github.io/pet-boarding-website-template/previews/desktop.png","author":{"@type":"Organization","name":"8B","url":"https://8b.com/"}}</script>
+</head>
+<body>
+<!-- navigation: black top bar: wordmark, five section links, Book a stay button; hides on scroll down; phone menu overlay of colour panels -->
+<header id="nav" class="nav" data-8b-section="navigation">
+  <div class="nav__bar">
+    <a class="nav__brand" href="#opening">Sill</a>
+    <nav class="nav__links" aria-label="Main">
+      <a class="m-link" href="#rooms">Rooms</a>
+      <a class="m-link" href="#day">A day</a>
+      <a class="m-link" href="#courtyard">Courtyard</a>
+      <a class="m-link" href="#visit">First visit</a>
+      <a class="m-link" href="#faq">Questions</a>
+    </nav>
+    <a class="m-btn-2 nav__book" href="#contact"><span class="m-btn-2__label">Book a stay</span></a>
+    <button class="m-iconbtn nav__toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="m-iconbtn__icon" aria-hidden="true"></span><span class="u-sr">Open menu</span></button>
+  </div>
+  <div class="nav__menu" id="menu" data-lenis-prevent hidden>
+    <button class="m-iconbtn nav__close" type="button"><span class="m-iconbtn__icon" aria-hidden="true"></span><span class="u-sr">Close menu</span></button>
+    <nav aria-label="Menu">
+      <ul>
+        <li><a class="m-surface" href="#rooms">Rooms</a></li>
+        <li><a class="m-surface-3" href="#day">A day</a></li>
+        <li><a class="m-surface-7" href="#courtyard">Courtyard</a></li>
+        <li><a class="m-surface-4" href="#visit">First visit</a></li>
+        <li><a class="m-surface-2" href="#faq">Questions</a></li>
+        <li><a class="m-surface-8" href="#contact">Book a stay</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- opening: two screens: a grid of colour panels with headline, photo, intro, price and buttons, then a facade of twelve coloured windows (demo: twelve rooms, five with cats) (animation: scene:opening) -->
+<section id="opening" data-8b-section="opening" aria-labelledby="opening-title">
+  <div class="op-s1">
+    <div class="op-grid">
+      <div class="op-cell op-a">
+        <div class="op-panel m-surface">
+          <h1 id="opening-title" class="m-text-2 op-title">Rooms with a view, for cats.</h1>
+        </div>
+      </div>
+      <div class="op-cell op-b">
+        <div class="op-panel m-surface-5">
+          <div class="m-photo op-photo"><img srcset="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=360&amp;q=60 360w, https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60 530w" sizes="(max-width: 767px) 120px, 41vw" style="background:#734040" src="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60" alt="A black cat in profile against a warm terracotta wall" width="1600" height="2000" fetchpriority="high"></div>
+          <p class="m-text-4 op-ledge">Room 4 · Olive, staying nine nights</p>
+        </div>
+      </div>
+      <div class="op-cell op-c">
+        <div class="op-panel m-surface-3">
+          <p class="m-text-7">Twelve single rooms in a quiet house in Utrecht, each with a deep window ledge over the courtyard. Sitters in the house day and night.</p>
+        </div>
+      </div>
+      <div class="op-cell op-d">
+        <div class="op-panel m-surface-4">
+          <p class="m-text-4">From €31 a night, one cat per room</p>
+          <svg class="m-curl op-curl" viewBox="0 0 200 300" aria-hidden="true"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
+          <div class="op-actions">
+            <a class="m-btn" href="#contact"><span class="m-btn__label">Book a stay</span></a>
+            <a class="m-link" href="#rooms">See the rooms</a>
+          </div>
+        </div>
+      </div>
+      <div class="op-cell op-e">
+        <div class="op-panel m-surface-2">
+          <p class="m-text-4">Winter holidays</p>
+          <p class="m-text">Christmas and New Year rooms are open for booking.</p>
+          <a class="m-link" href="#contact">Ask for dates</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="op-s2">
+    <div class="op-ink" aria-hidden="true">
+      <svg class="op-ink__hill" viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d="M0 1000 V200 C70 200 150 26 370 12 C560 2 640 150 810 168 C900 177 960 180 1000 180 V1000 Z"/></svg>
+      <svg class="m-curl op-ink__curl" viewBox="0 0 200 300" aria-hidden="true"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
+    </div>
+    <div class="op-s2__text">
+      <h2 class="m-text-3">Twelve rooms, twelve windows.</h2>
+      <p class="m-text-7">Every room is built around its window: a ledge forty centimetres deep, a radiator shelf for winter and a view of the linden in the courtyard. The lamps go on at seven.</p>
+      <a class="m-link" href="#rooms">Walk through the rooms</a>
+    </div>
+    <ol class="op-house" aria-label="The twelve rooms">
+      <li class="op-win op-win--plain m-surface"><span class="m-text-4 op-win__label">1 · Ledge</span></li>
+      <li class="op-win m-surface-4"><div class="m-photo op-win__photo"><img style="background:#a68c8c" src="https://images.unsplash.com/photo-1680428789174-a09a0c8a45a5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A cat on the outside sill of a window among potted plants" width="1600" height="2843" loading="lazy"></div><span class="m-text-4 op-win__label">2 · Pip</span></li>
+      <li class="op-win op-win--plain m-surface-3"><span class="m-text-4 op-win__label">3 · Tower</span></li>
+      <li class="op-win op-win--plain m-surface-8"><span class="m-text-4 op-win__label">4 · Ledge</span></li>
+      <li class="op-win op-win--plain m-surface-6"><span class="m-text-4 op-win__label">5 · Burrow</span></li>
+      <li class="op-win m-surface-7"><div class="m-photo op-win__photo"><img style="background:#595959" src="https://images.unsplash.com/photo-1661258580619-8b6d93b02083?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A white cat looking out between open shutters" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">6 · Moss</span></li>
+      <li class="op-win m-surface-5"><div class="m-photo op-win__photo"><img style="background:#595959" src="https://images.unsplash.com/photo-1707084889603-c84a0ae3eb5e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A tabby cat sitting upright on a window sill" width="1600" height="1876" loading="lazy"></div><span class="m-text-4 op-win__label">7 · Bruno</span></li>
+      <li class="op-win op-win--plain m-surface-2"><span class="m-text-4 op-win__label">8 · Tower</span></li>
+      <li class="op-win op-win--plain m-surface-7"><span class="m-text-4 op-win__label">9 · Ledge</span></li>
+      <li class="op-win m-surface"><div class="m-photo op-win__photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1664731638140-8d58cd3d8c23?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A ginger cat in a lit window beside a lamp" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">10 · Mochi</span></li>
+      <li class="op-win op-win--plain m-surface-5"><span class="m-text-4 op-win__label">11 · Burrow</span></li>
+      <li class="op-win m-surface-8"><div class="m-photo op-win__photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1780062611008-5c9e5029293b?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A white and grey cat sitting on a window ledge" width="1600" height="2133" loading="lazy"></div><span class="m-text-4 op-win__label">12 · Saar</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- rooms: room types as panels of different shapes, each with photo, text and price per night, plus an "every room has" list (demo: Ledge, Tower, Burrow) (animation: scene:rooms) -->
+<section id="rooms" data-8b-section="rooms" aria-labelledby="rooms-title">
+  <div class="rm-grid">
+    <div class="rm-head m-surface-6">
+      <h2 id="rooms-title" class="m-text-3" data-8b-motion="rise">Three shapes of room</h2>
+      <p class="m-text">Cats choose rooms the way they choose boxes. Tell us whether yours watches, climbs or hides, and we give it the room that fits.</p>
+    </div>
+    <article class="rm-room rm-ledge m-surface-7">
+      <div class="m-photo"><img style="background:#260c0c" src="https://images.unsplash.com/photo-1681741179058-e8a7a7cf77a9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger cat on a window ledge looking out at the city" width="1600" height="1067" loading="lazy"></div>
+      <div class="rm-body">
+        <h3 class="m-text-6 rm-name">The Ledge</h3>
+        <p class="m-text">For watchers. A two-metre ledge at sitting height, a hammock under the sill and the best view of the bird feeder.</p>
+        <p class="rm-price"><strong>€34</strong><span class="m-text-4">a night · fits two siblings</span></p>
+      </div>
+    </article>
+    <article class="rm-room rm-tower m-surface-3">
+      <div class="m-photo"><img style="background:#f3d9c0" src="https://images.unsplash.com/photo-1687417960535-46e2faed40c1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwb24lMjBzaGVsZnxlbnwxfDF8fHwxNzkxMjk4OTMzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A cat sitting on a shelf in a tall wooden shelving unit" width="1600" height="2844" loading="lazy"></div>
+      <div class="rm-body">
+        <h3 class="m-text-6 rm-name" style="--len:9">The Tower</h3>
+        <p class="m-text">For climbers. Five shelves up to the ceiling, a lookout box at the top and a rope to get there.</p>
+        <p class="rm-price"><strong>€39</strong><span class="m-text-4">a night · fits two siblings</span></p>
+      </div>
+    </article>
+    <article class="rm-room rm-burrow m-surface-2">
+      <div class="m-photo"><img style="background:#402626" src="https://images.unsplash.com/photo-1663022374632-385813867095?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwaW4lMjBib3h8ZW58MXwwfHx8MTc5MTI5ODkzNHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A kitten peeking over the edge of a box" width="1600" height="1067" loading="lazy"></div>
+      <div class="rm-body">
+        <h3 class="m-text-6 rm-name">The Burrow</h3>
+        <p class="m-text">For shy cats and first nights. Low ceiling, a covered bed, a window at floor level and dimmed light.</p>
+        <p class="rm-price"><strong>€31</strong><span class="m-text-4">a night</span></p>
+      </div>
+    </article>
+    <div class="rm-every m-surface-8">
+      <h3 class="m-text-6">Every room has</h3>
+      <ul class="m-text">
+        <li>its own window and fresh-air vent</li>
+        <li>a heated ledge from October</li>
+        <li>your cat's bowls and blanket</li>
+        <li>a sitter who knows its name</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- letters: three short notes in a handwriting font with photos (demo: the evening letters sitters send to owners); works as testimonials -->
+<section id="letters" data-8b-section="letters" aria-labelledby="letters-title">
+  <div class="lt-grid">
+    <div class="lt-intro">
+      <h2 id="letters-title" class="m-text-3" data-8b-motion="rise">A letter every evening</h2>
+      <p class="m-text-7">At half past six your cat's sitter writes to you: what was eaten, where the nap happened, one photo. No app to install, just an email you will want to keep.</p>
+      <svg class="m-curl" viewBox="0 0 200 300" aria-hidden="true" data-8b-motion="curl"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
+    </div>
+    <div class="lt-list">
+      <article class="lt-letter m-surface-4">
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#262626" src="https://images.unsplash.com/photo-1714965577457-af3fedbcd8b8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTV8fGNhdCUyMHN1bmJhdGhpbmd8ZW58MXwxfHx8MTc5MTI5ODk0MXww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat dozing in the sun" width="1600" height="2133" loading="lazy"></div>
+        <div class="lt-body">
+          <p class="m-text-4">Tuesday, 18:40 · Room 4</p>
+          <p class="m-text-5">Dear Ana, Olive finished her breakfast and most of the afternoon sun. She has claimed the second shelf and will not discuss it. Purred at the sparrows, quietly.</p>
+          <p class="m-text-5 lt-sign">Noor</p>
+        </div>
+      </article>
+      <article class="lt-letter m-surface-8">
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#c08c0c" src="https://images.unsplash.com/photo-1613064504039-bb89104af499?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A Siamese cat asleep across a yellow cushion" width="1600" height="2400" loading="lazy"></div>
+        <div class="lt-body">
+          <p class="m-text-4">Wednesday, 18:35 · Room 10</p>
+          <p class="m-text-5">Mochi spent an hour on the ledge reviewing the sparrows. He has opinions. Asleep against the radiator from nine.</p>
+          <p class="m-text-5 lt-sign">Jasper</p>
+        </div>
+      </article>
+      <article class="lt-letter m-surface-7">
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#c0d9d9" src="https://images.unsplash.com/photo-1649365231622-d774ce10a140?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc3VuYmF0aGluZ3xlbnwxfDF8fHwxNzkxMjk4OTQxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger and white cat resting on a stone wall at sunset" width="1600" height="2400" loading="lazy"></div>
+        <div class="lt-body">
+          <p class="m-text-4">Thursday, 18:50 · Room 7</p>
+          <p class="m-text-5">Bruno let me brush him today. Three whole minutes. We are both very proud of ourselves.</p>
+          <p class="m-text-5 lt-sign">Ilse</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- day: pinned horizontal track of six timed panels under a sky band (demo: the cats' daily schedule from 07:00 to 21:00) (animation: scene:day) -->
+<section id="day" data-8b-section="day" aria-labelledby="day-title">
+  <div class="dy-stage">
+    <div class="dy-head">
+      <h2 id="day-title" class="m-text-3">A day at Sill</h2>
+      <p class="m-text">The same hours every day. Cats like a timetable more than they let on.</p>
+    </div>
+    <div class="dy-sky" aria-hidden="true"><div class="dy-disc"></div></div>
+    <div class="dy-rail">
+      <ol class="dy-track">
+        <li class="dy-hour m-surface-5">
+          <p class="dy-time"><time datetime="07:00">07:00</time></p>
+          <h3 class="m-text-6">Breakfast</h3>
+          <p class="m-text">Weighed portions from your own bag, noted in the evening letter.</p>
+          <div class="m-photo dy-photo"><img style="background:#260c0c" src="https://images.unsplash.com/photo-1764576504536-dbdfa4cb1d9a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwZWF0aW5nJTIwYm93bHxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger cat eating dry food from a bowl" width="1600" height="2400" loading="lazy"></div>
+        </li>
+        <li class="dy-hour m-surface-3">
+          <p class="dy-time"><time datetime="09:30">09:30</time></p>
+          <h3 class="m-text-6">Window watch</h3>
+          <p class="m-text">Blinds up, ledges warm. The sparrows arrive on schedule.</p>
+          <div class="m-photo dy-photo"><img style="background:#d9d9d9" src="https://images.unsplash.com/photo-1599798361719-5149b29830c5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=670&amp;q=60" alt="A tortoiseshell cat on a window sill looking out" width="1600" height="1067" loading="lazy"></div>
+        </li>
+        <li class="dy-hour m-surface">
+          <p class="dy-time"><time datetime="12:00">12:00</time></p>
+          <h3 class="m-text-6">Play hour</h3>
+          <p class="m-text">Feather wands and paper bags, one sitter per room, door closed.</p>
+          <div class="m-photo dy-photo"><img style="background:#c0a68c" src="https://images.unsplash.com/photo-1708979346051-e809d2059b32?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwcGxheWluZyUyMHRveXxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A cat crouching to pounce on a striped toy" width="1600" height="2400" loading="lazy"></div>
+        </li>
+        <li class="dy-hour m-surface-7">
+          <p class="dy-time"><time datetime="14:00">14:00</time></p>
+          <h3 class="m-text-6">Long nap</h3>
+          <p class="m-text">The house goes quiet. Nobody vacuums, nobody knocks.</p>
+          <div class="m-photo dy-photo"><img style="background:#a6a6a6" src="https://images.unsplash.com/photo-1697716759638-7db291129c7d?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A tabby cat asleep on a red chair cushion" width="1600" height="2133" loading="lazy"></div>
+        </li>
+        <li class="dy-hour m-surface-6">
+          <p class="dy-time"><time datetime="17:30">17:30</time></p>
+          <h3 class="m-text-6">Brushing</h3>
+          <p class="m-text">Ten slow minutes, or one, depending on the cat.</p>
+          <div class="m-photo dy-photo"><img style="background:#8cc0c0" src="https://images.unsplash.com/photo-1715962148526-560cf2da2aa9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwYmVpbmclMjBicnVzaGVkfGVufDF8MXx8fDE3OTEyOTg5MzZ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A hand stroking a long-haired cat's head" width="1600" height="2400" loading="lazy"></div>
+        </li>
+        <li class="dy-hour m-surface-2">
+          <p class="dy-time"><time datetime="21:00">21:00</time></p>
+          <h3 class="m-text-6">Lights low</h3>
+          <p class="m-text">The night sitter takes the sofa downstairs. Every door checked twice.</p>
+          <div class="m-photo dy-photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1759455024831-ef131a04c6fb?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbmlnaHQlMjBkYXJrfGVufDF8MXx8fDE3OTEyOTg5Mzh8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat's yellow eyes in the dark" width="1600" height="2000" loading="lazy"></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- sitters: team of four: portraits behind coloured ledges at stepped heights, name and role on each ledge -->
+<section id="sitters" data-8b-section="sitters" aria-labelledby="sitters-title">
+  <div class="st-head">
+    <h2 id="sitters-title" class="m-text-3" data-8b-motion="rise">Four people, always in the house</h2>
+    <p class="m-text">No rota app, no agency staff. Each sitter has their own rooms and stays with your cat for the whole booking.</p>
+  </div>
+  <ul class="st-list">
+    <li class="st-person">
+      <div class="m-surface-7">
+        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#0c2626" src="https://images.unsplash.com/photo-1776715823253-d0ea2eb4b319?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8d29tYW4lMjBob2xkaW5nJTIwY2F0fGVufDF8MXx8fDE3OTEyOTg5Mzl8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Noor in a grey coat with a calico cat on her lap" width="1600" height="2492" loading="lazy"></div>
+        <div class="st-ledge">
+          <h3 class="m-text-6">Noor</h3>
+          <p class="m-text">Night shift. Reads aloud to the nervous ones.</p>
+        </div>
+      </div>
+    </li>
+    <li class="st-person">
+      <div class="m-surface">
+        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#59260c" src="https://images.unsplash.com/photo-1751402985454-b0d819ad972c?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Jasper holding a small kitten to his chin" width="1600" height="2844" loading="lazy"></div>
+        <div class="st-ledge">
+          <h3 class="m-text-6">Jasper</h3>
+          <p class="m-text">Mornings and medicine. Gives a pill in four seconds.</p>
+        </div>
+      </div>
+    </li>
+    <li class="st-person">
+      <div class="m-surface-4">
+        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#a60c0c" src="https://images.unsplash.com/photo-1772723246509-63d23da29f6a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTB8fHdvbWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTM5fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Ilse holding a tabby cat against a red wall" width="1600" height="2399" loading="lazy"></div>
+        <div class="st-ledge">
+          <h3 class="m-text-6">Ilse</h3>
+          <p class="m-text">Grooming and letters. Writes most of them.</p>
+        </div>
+      </div>
+    </li>
+    <li class="st-person">
+      <div class="m-surface-3">
+        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#594026" src="https://images.unsplash.com/photo-1774513149166-5b10650e45ba?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Daan holding a black and white cat by a window" width="1600" height="2134" loading="lazy"></div>
+        <div class="st-ledge">
+          <h3 class="m-text-6">Daan</h3>
+          <p class="m-text">Owner. Built every shelf in the house.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- courtyard: one photo cut into six window panes by black mullions, with heading, text, a three-item list and a second photo with caption (demo: the courtyard view) (animation: scene:courtyard) -->
+<section id="courtyard" data-8b-section="courtyard" aria-labelledby="courtyard-title">
+  <div class="cy-grid">
+    <div class="cy-window">
+      <div class="cy-pane" style="--c:0;--r:0;--mc:0;--mr:0"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="The courtyard: two brick wings, a lawn and trees" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:1;--r:0;--mc:1;--mr:0" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:2;--r:0;--mc:0;--mr:1" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:0;--r:1;--mc:1;--mr:1" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:1;--r:1;--mc:0;--mr:2" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:2;--r:1;--mc:1;--mr:2" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+    </div>
+    <div class="cy-text m-surface-7">
+      <h2 id="courtyard-title" class="m-text-3">Every window faces the courtyard</h2>
+      <p class="m-text">No street side, no traffic, no dogs walking past. Between the two brick wings there is a lawn, a linden and a wall of ivy that turns red in October.</p>
+      <ul class="m-text-4">
+        <li>A linden tree, sixty years old</li>
+        <li>A feeder, refilled at seven</li>
+        <li>Ivy that turns red in October</li>
+      </ul>
+    </div>
+    <figure class="cy-birds m-surface-8">
+      <div class="m-photo"><img style="background:#40400c" src="https://images.unsplash.com/photo-1733516858066-324f793bec01?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YmlyZCUyMGZlZWRlciUyMGdhcmRlbnxlbnwxfDB8fHwxNzkxMjk5MDAwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="Two sparrows on a bird feeder" width="1600" height="1067" loading="lazy"></div>
+      <figcaption class="m-text-4"><p>The sparrows arrive at six. The ledges fill up at five past.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- visit: four numbered steps as a rising staircase of panels, a photo on the top step (demo: what happens on a first visit) -->
+<section id="visit" data-8b-section="visit" aria-labelledby="visit-title">
+  <div class="vs-grid">
+    <div class="vs-head">
+      <h2 id="visit-title" class="m-text-3" data-8b-motion="rise">Your first visit</h2>
+      <p class="m-text-7">Most cats settle on the second day. These four steps get them there sooner.</p>
+      <svg class="m-curl vs-curl" viewBox="0 0 200 300" aria-hidden="true" data-8b-motion="curl"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
+    </div>
+    <article class="vs-step m-surface-4">
+      <p class="vs-num">1</p>
+      <h3 class="m-text-6">Meet first</h3>
+      <p class="m-text">A free half-hour visit, with or without your cat. See the room, meet the sitter, ask everything.</p>
+    </article>
+    <article class="vs-step m-surface-5">
+      <p class="vs-num">2</p>
+      <h3 class="m-text-6">Bring home along</h3>
+      <p class="m-text">A blanket or an old T-shirt that smells of you. It stays in the room for the whole stay.</p>
+    </article>
+    <article class="vs-step m-surface">
+      <p class="vs-num">3</p>
+      <h3 class="m-text-6">A soft first night</h3>
+      <p class="m-text">Lights low, a sitter nearby and no new faces until morning. The first night costs nothing extra.</p>
+    </article>
+    <article class="vs-step m-surface-7">
+      <div class="m-photo vs-photo" data-8b-motion="peek"><img style="background:#a6a68c" src="https://images.unsplash.com/photo-1608228279688-495f6a3861a1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8YmxhY2slMjBjYXQlMjBwZWVraW5nfGVufDF8MXx8fDE3OTEyOTg5MzB8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat peeking out from behind a wooden post" width="1600" height="2133" loading="lazy"></div>
+      <p class="vs-num">4</p>
+      <h3 class="m-text-6">Letters start</h3>
+      <p class="m-text">The first evening letter arrives the same day, usually with a cat peeking out from somewhere.</p>
+    </article>
+  </div>
+</section>
+
+<!-- quiet: four rules or promises as panels with one big word each (demo: No dogs, One cat, Own air, Vet close) (animation: scene:quiet) -->
+<section id="quiet" data-8b-section="quiet" aria-labelledby="quiet-title">
+  <div class="qt-head">
+    <h2 id="quiet-title" class="m-text-3">A quiet house, by rule</h2>
+    <p class="m-text">Stress is what makes cats ill on holiday. So the house is run for silence, distance and fresh air, and four rules are never bent.</p>
+  </div>
+  <ul class="qt-rules">
+    <li class="qt-rule m-surface-7">
+      <p class="m-text-8 qt-word">No dogs.</p>
+      <p class="m-text">Not as guests, not as staff, not visiting. The house never smells of dog.</p>
+    </li>
+    <li class="qt-rule m-surface-4">
+      <p class="m-text-8 qt-word">One cat.</p>
+      <p class="m-text">One cat per room. Siblings share only if they share at home.</p>
+    </li>
+    <li class="qt-rule m-surface-5">
+      <p class="m-text-8 qt-word">Own air.</p>
+      <p class="m-text">Every room has its own vent, so nothing passes from one room to the next.</p>
+    </li>
+    <li class="qt-rule m-surface-8">
+      <p class="m-text-8 qt-word">Vet close.</p>
+      <p class="m-text">A cat clinic two streets away, on call day and night for every guest.</p>
+    </li>
+  </ul>
+</section>
+
+<!-- faq: questions and answers (native <details>) beside a heading panel with a phone link -->
+<section id="faq" data-8b-section="faq" aria-labelledby="faq-title">
+  <div class="fq-grid">
+    <div class="fq-head m-surface-3">
+      <h2 id="faq-title" class="m-text-3" data-8b-motion="rise">Questions owners ask</h2>
+      <p class="m-text">Something else? Call the house, a sitter always picks up: <a data-8b-placeholder="phone" class="m-link" href="tel:+31300000000">+31 30 000 0000</a></p>
+    </div>
+    <div class="fq-list">
+      <details class="fq-item m-surface-4">
+        <summary class="m-text-6">Which vaccinations are needed?</summary>
+        <p class="m-text fq-a">Cat flu and feline panleukopenia, given at least two weeks before arrival. Bring the passport on the first day; we copy it and give it back.</p>
+      </details>
+      <details class="fq-item m-surface-4">
+        <summary class="m-text-6">Can two cats share a room?</summary>
+        <p class="m-text fq-a">Yes, if they live together at home. The Ledge and the Tower fit two; the second cat pays half.</p>
+      </details>
+      <details class="fq-item m-surface-4">
+        <summary class="m-text-6">What about medication?</summary>
+        <p class="m-text fq-a">Pills, drops and insulin are given at no extra cost. Write the schedule on the booking form and bring enough for the whole stay.</p>
+      </details>
+      <details class="fq-item m-surface-4">
+        <summary class="m-text-6">Is there a minimum stay?</summary>
+        <p class="m-text fq-a">Two nights. On weekdays we also take day guests from eight to six, for owners who are moving house or renovating.</p>
+      </details>
+      <details class="fq-item m-surface-4">
+        <summary class="m-text-6">When can I drop off and pick up?</summary>
+        <p class="m-text fq-a">Every day from 8:00 to 11:00 and from 17:00 to 19:00. On Sundays only in the evening.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- contact: booking form framed by four contact panels: Call, Visit, Hours, Write (phone, address, opening hours, email are placeholders) (animation: scene:contact) -->
+<section id="contact" data-8b-section="contact" aria-labelledby="contact-title">
+  <div class="ct-grid">
+    <div class="ct-side ct-call m-surface">
+      <p class="m-text-3 ct-label" aria-hidden="true" style="--len:4">Call</p>
+      <div class="ct-detail">
+        <p class="m-text-4">Phone, daily 8–20</p>
+        <p class="m-text"><a data-8b-placeholder="phone" class="m-link" href="tel:+31300000000">+31 30 000 0000</a></p>
+      </div>
+    </div>
+    <div class="ct-side ct-visit m-surface-7">
+      <p class="m-text-3 ct-label" aria-hidden="true">Visit</p>
+      <address class="ct-detail">
+        <span class="m-text-4">Address</span>
+        <span class="m-text">Example Street 1, 3500 AA Utrecht. Ring the green bell.</span>
+      </address>
+    </div>
+    <div class="ct-form m-surface-4">
+      <form data-8b-placeholder="form" action="#" method="post" novalidate>
+        <h2 id="contact-title" class="m-text-3">Book a room</h2>
+        <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" name="name" type="text" autocomplete="name" required></label>
+        <label class="m-field"><span class="m-field__label">Email</span><input class="m-field__input" name="email" type="email" autocomplete="email" required></label>
+        <label class="m-field ct-short"><span class="m-field__label">Cat's name</span><input class="m-field__input" name="cat" type="text"></label>
+        <label class="m-field ct-short"><span class="m-field__label">Arrival</span><input class="m-field__input" name="arrival" type="date"></label>
+        <label class="m-field ct-short"><span class="m-field__label">Departure</span><input class="m-field__input" name="departure" type="date"></label>
+        <label class="m-field ct-wide"><span class="m-field__label">Room</span><select class="m-field__input" name="room"><option>Not sure yet</option><option>The Ledge</option><option>The Tower</option><option>The Burrow</option></select></label>
+        <label class="m-field ct-wide"><span class="m-field__label">Anything we should know</span><textarea class="m-field__input" name="notes" rows="3"></textarea></label>
+        <div class="ct-send">
+          <button class="m-btn" type="submit"><span class="m-btn__label">Ask for a room</span></button>
+          <p class="m-text ct-status" role="status" hidden>Thank you. A sitter answers within one working day.</p>
+        </div>
+      </form>
+    </div>
+    <div class="ct-side ct-hours m-surface-8">
+      <p class="m-text-3 ct-label" aria-hidden="true">Hours</p>
+      <div class="ct-detail">
+        <span class="m-text-4">Drop-off and pick-up</span>
+        <span class="m-text">8:00–11:00 and 17:00–19:00. Sundays evening only.</span>
+      </div>
+    </div>
+    <div class="ct-side ct-write m-surface-5">
+      <p class="m-text-3 ct-label" aria-hidden="true" style="--len:5">Write</p>
+      <div class="ct-detail">
+        <p class="m-text-4">Email</p>
+        <p class="m-text"><a data-8b-placeholder="email" class="m-link" href="mailto:hello@sill.example">hello@sill.example</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- footer: black footer: links, address, phone, email, a one-line note, copyright with the Design: 8B credit, and a large wordmark -->
+<footer id="footer" data-8b-section="footer">
+  <div class="ft-grid">
+    <nav class="ft-nav" aria-label="Footer">
+      <ul class="m-text">
+        <li><a class="m-link" href="#rooms">Rooms</a></li>
+        <li><a class="m-link" href="#day">A day at Sill</a></li>
+        <li><a class="m-link" href="#courtyard">The courtyard</a></li>
+        <li><a class="m-link" href="#visit">First visit</a></li>
+        <li><a class="m-link" href="#contact">Book a stay</a></li>
+      </ul>
+    </nav>
+    <address class="ft-contact m-text">
+      <span>Example Street 1, 3500 AA Utrecht</span>
+      <a data-8b-placeholder="phone" class="m-link" href="tel:+31300000000">+31 30 000 0000</a>
+      <a data-8b-placeholder="email" class="m-link" href="mailto:hello@sill.example">hello@sill.example</a>
+    </address>
+    <div class="ft-note">
+      <p class="m-text">A boarding house for cats only. Twelve rooms, four sitters, one courtyard.</p>
+      <p class="m-text-4">© 2026 Sill · Design: <a href="https://8b.com/" style="color:inherit" data-8b-credit>8B</a></p>
+    </div>
+  </div>
+  <div class="ft-mark" data-8b-motion="peek">
+    <p class="m-text-2 ft-word" aria-hidden="true" style="--len:4">Sill</p>
+    <svg class="m-curl ft-curl" viewBox="0 0 200 300" aria-hidden="true" data-8b-motion="curl"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
+  </div>
+</footer>
+
+<script data-8b-part="section-script:nav">
+(() => {
+  const nav = document.getElementById('nav');
+  const toggle = nav.querySelector('.nav__toggle');
+  const menu = nav.querySelector('#menu');
+  const close = nav.querySelector('.nav__close');
+  let last = window.scrollY, run = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY, d = y - last;
+    last = y;
+    if (y < 90) { nav.removeAttribute('data-hidden'); run = 0; return; }
+    if (d === 0) return;
+    if (Math.sign(d) !== Math.sign(run)) run = 0;
+    run += d;
+    if (run > 30) nav.setAttribute('data-hidden', '');
+    else if (run < -30) nav.removeAttribute('data-hidden');
+  }, { passive: true });
+  nav.addEventListener('focusin', () => nav.removeAttribute('data-hidden'));
+  const open = () => {
+    menu.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    window.lenis?.stop();
+    menu.querySelector('a')?.focus();
+  };
+  const shut = (refocus) => {
+    menu.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    window.lenis?.start();
+    if (refocus) toggle.focus();
+  };
+  toggle.addEventListener('click', open);
+  close.addEventListener('click', () => shut(true));
+  menu.addEventListener('click', event => { if (event.target.closest('a')) shut(false); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && !menu.hidden) shut(true); });
+})();
+</script>
+<script data-8b-part="section-script:opening">
+(() => {
+  const screen = document.querySelector('#opening .op-s1');
+  if (!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) screen.removeAttribute('data-paused');
+    else screen.setAttribute('data-paused', '');
+  }).observe(screen);
+})();
+</script>
+<script data-8b-part="section-script:contact">
+(() => {
+  const form = document.querySelector('#contact form');
+  const status = form.querySelector('.ct-status');
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    status.hidden = false;
+    form.reset();
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
+<script data-8b-part="motion-queue">
+(() => {
+  'use strict';
+  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+  const parsed = document.readyState === 'loading' ? new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true })) : Promise.resolve();
+  const ready = () => Promise.all([fonts, parsed]).then(() => firsts);
+  const nextTask = () => window.scheduler?.yield?.() ?? new Promise(resolve => setTimeout(resolve));
+  const refresh = () => {
+    if (typeof window.refreshScroll === 'function') return window.refreshScroll();
+    window.ScrollTrigger?.sort(); window.ScrollTrigger?.refresh();
+  };
+  const run = (setup, name) => {
+    for (const trigger of window.ScrollTrigger?.getAll() || []) if (!trigger.end && window.ScrollTrigger.getAll().includes(trigger)) trigger.refresh(0, 1);
+    const context = window.gsap.context(() => {});
+    const log = new MutationObserver(() => {});
+    log.observe(document.documentElement, { attributes: true, attributeOldValue: true, subtree: true });
+    let failure = null, records;
+    try { context.add(() => { try { setup(); } catch (error) { failure = error; } }); }
+    finally { records = log.takeRecords(); log.disconnect(); }
+    if (!failure) return true;
+    try { context.revert(); } catch (error) { console.error(name, 'revert failed', error); }
+    for (const { target, attributeName, oldValue } of records.reverse()) {
+      const now = target.getAttribute(attributeName);
+      if (oldValue == null) { if (now != null) target.removeAttribute(attributeName); }
+      else if (now !== oldValue) target.setAttribute(attributeName, oldValue);
+    }
+    console.error(name, failure);
+    return false;
+  };
+  let firsts = Promise.resolve(), tail = null, pending = 0, lazy = null, building = 0, firstCount = 0;
+  window.motionReady = ready();
+  parsed.then(() => { if (firstCount && !tail) firsts.then(refresh); });
+  window.queueMotion = (setup, { first = false, near, id } = {}) => {
+    if (!window.gsap || typeof setup !== 'function') return;
+    const name = id || document.currentScript?.getAttribute('data-8b-part') || 'motion';
+    if (near instanceof Element && window.IntersectionObserver) {
+      const watch = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        watch.disconnect();
+        building++;
+        lazy = (lazy || ready()).then(nextTask).then(() => run(setup, name)).finally(() => { if (!--building) refresh(); });
+      }, { rootMargin: '100% 0px' });
+      watch.observe(near);
+      return;
+    }
+    if (first) { firstCount++; firsts = firsts.then(() => fonts).then(() => { if (!run(setup, name)) refresh(); }); }
+    else {
+      pending++;
+      tail = (tail || ready()).then(nextTask).then(() => run(setup, name))
+        .finally(() => { if (!--pending) refresh(); });
+    }
+    window.motionReady = Promise.all([firsts, tail]);
+  };
+})();
+</script>
+<script data-8b-part="page-init">
+gsap.registerPlugin(ScrollTrigger, SplitText);
+function refreshScroll() {
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
+}
+gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+  const bar = document.querySelector('#nav .nav__bar');
+  const lenis = window.lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95, anchors: { offset: -(bar ? bar.offsetHeight : 0) } });
+  const tick = time => lenis.raf(time * 1000);
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(tick);
+  gsap.ticker.lagSmoothing(0);
+  return () => { gsap.ticker.remove(tick); gsap.ticker.lagSmoothing(500, 33); lenis.destroy(); window.lenis = null; };
+});
+</script>
+<script data-8b-part="motion">
+const effects = {
+  peek(frame, vars = {}) {
+    return gsap.fromTo(frame.firstElementChild, { yPercent: 42 }, { yPercent: 0, ease: 'none', ...vars });
+  },
+  rise(heading, vars = {}) {
+    const split = SplitText.create(heading, { type: 'lines', mask: 'lines' });
+    const timeline = gsap.timeline({ ...vars, onComplete() { split.revert(); } });
+    timeline.from(split.lines, { yPercent: 108, duration: .9, stagger: .09, ease: 'power3.out' });
+    timeline.split = split;
+    return timeline;
+  },
+  curl(svg, vars = {}) {
+    return gsap.fromTo(svg.querySelector('path'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', ...vars });
+  }
+};
+document.querySelectorAll('[data-8b-section]').forEach(section => {
+  const first = section.getBoundingClientRect().top < window.innerHeight;
+  const peeks = section.querySelectorAll('[data-8b-motion~="peek"]');
+  if (peeks.length) {
+    const id = `effect:peek:${section.id}`;
+    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      peeks.forEach((frame, i) => ScrollTrigger.create({
+        id: `${id}:${i}`, trigger: frame, start: 'top bottom', end: 'top 40%', scrub: .5,
+        animation: effects.peek(frame)
+      }));
+    }), { first, id });
+  }
+  const rises = section.querySelectorAll('[data-8b-motion~="rise"]');
+  if (rises.length) {
+    const id = `effect:rise:${section.id}`;
+    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      const timelines = [...rises].map((heading, i) => {
+        const timeline = effects.rise(heading, { paused: true });
+        ScrollTrigger.create({ id: `${id}:${i}`, trigger: heading, start: 'top 88%', once: true, animation: timeline, toggleActions: 'play play none none' });
+        return timeline;
+      });
+      return () => timelines.forEach(timeline => timeline.split.revert());
+    }), { first, id });
+  }
+  const curls = section.querySelectorAll('[data-8b-motion~="curl"]');
+  if (curls.length) {
+    const id = `effect:curl:${section.id}`;
+    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      curls.forEach((svg, i) => ScrollTrigger.create({
+        id: `${id}:${i}`, trigger: svg, start: 'top 95%', end: 'bottom 45%', scrub: .6,
+        animation: effects.curl(svg)
+      }));
+    }), { first, id });
+  }
+});
+</script>
+<script data-8b-part="scene:opening">
+queueMotion(() => {
+  const section = document.getElementById('opening');
+  const first = section.querySelector('.op-s1');
+  const second = section.querySelector('.op-s2');
+  const ink = section.querySelector('.op-ink');
+  const inkCurl = ink.querySelector('.op-ink__curl path');
+  const cells = ['.op-a', '.op-e', '.op-c', '.op-d', '.op-b'].map(selector => section.querySelector(selector));
+  const windows = gsap.utils.toArray('.op-win', section);
+  gsap.matchMedia().add({
+    wide: '(min-width: 768px) and (prefers-reduced-motion: no-preference)',
+    narrow: '(max-width: 767.98px) and (prefers-reduced-motion: no-preference)'
+  }, context => {
+    const { wide } = context.conditions;
+    section.setAttribute('data-ink', '');
+    const shear = wide
+      ? [[-.03, -.16], [.05, -.3], [-.06, .02], [.01, -.1], [.06, -.2]]
+      : [[-.04, -.12], [.06, -.22], [-.05, .02], [.02, -.08], [-.06, -.18]];
+    const house = section.querySelector('.op-house');
+    const jitter = [.03, 0, .05, .02, .06, .01];
+    const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { id: 'opening', trigger: second, start: 'top bottom', end: 'top top', scrub: .5, invalidateOnRefresh: true }
+    });
+    timeline.fromTo(ink, { y: 0 }, { y: () => -1.02 * first.offsetHeight, duration: 1 }, 0);
+    timeline.fromTo(inkCurl, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .42 }, .06);
+    cells.forEach((cell, i) => timeline.fromTo(cell, { x: 0, y: 0 }, {
+      x: () => shear[i][0] * window.innerWidth, y: () => shear[i][1] * window.innerHeight, duration: .85, ease: 'power1.in'
+    }, 0));
+    windows.forEach((win, i) => {
+      const at = Math.min(.84, (house.offsetTop + win.offsetTop) / first.offsetHeight + .05 + jitter[i % jitter.length]);
+      timeline.fromTo(win, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .14, ease: 'power1.out' }, at);
+      const photo = win.querySelector('img');
+      if (photo) timeline.fromTo(photo, { yPercent: 45 }, { yPercent: 0, duration: .2, ease: 'power2.out' }, at + .04);
+    });
+    return () => section.removeAttribute('data-ink');
+  });
+}, { first: true });
+</script>
+<script data-8b-part="scene:rooms">
+queueMotion(() => {
+  const section = document.getElementById('rooms');
+  const rooms = gsap.utils.toArray('.rm-room', section);
+  const towerName = section.querySelector('.rm-tower .rm-name');
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const side = () => Math.min(...rooms.map(room => Math.min(room.offsetWidth, room.offsetHeight))) * (window.innerWidth < 768 ? .62 : .9);
+    rooms.forEach((room, i) => {
+      const timeline = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: { id: `rooms:${i}`, trigger: room, start: 'top 88%', end: 'bottom 78%', scrub: .5, invalidateOnRefresh: true }
+      });
+      timeline.fromTo(room, {
+        clipPath: () => { const s = side(); return `inset(${room.offsetHeight - s}px ${room.offsetWidth - s}px 0px 0px)`; }
+      }, { clipPath: 'inset(0px 0px 0px 0px)', duration: 1, ease: 'power1.inOut' }, 0);
+      if (room.contains(towerName)) timeline.fromTo(towerName, { rotation: 0 }, { rotation: -90, duration: .7, ease: 'power2.inOut' }, .3);
+    });
+  });
+});
+</script>
+<script data-8b-part="scene:day">
+queueMotion(() => {
+  const section = document.getElementById('day');
+  const stage = section.querySelector('.dy-stage');
+  const rail = section.querySelector('.dy-rail');
+  const track = section.querySelector('.dy-track');
+  const sky = section.querySelector('.dy-sky');
+  const disc = section.querySelector('.dy-disc');
+  const tokens = getComputedStyle(document.documentElement);
+  const colors = ['--color-3', '--color-10', '--color-9', '--color-6', '--color-7', '--color-5'].map(token => tokens.getPropertyValue(token).trim());
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    section.setAttribute('data-track', '');
+    const travel = () => Math.max(0, track.scrollWidth - rail.clientWidth);
+    const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { id: 'day', trigger: section, start: 'top top', end: () => `+=${Math.max(window.innerHeight, travel() * 1.15)}`, pin: stage, scrub: .6, invalidateOnRefresh: true }
+    });
+    timeline.fromTo(track, { x: 0 }, { x: () => -travel(), duration: 1 }, 0);
+    colors.slice(1).forEach((color, i) => timeline.to(sky, { backgroundColor: color, duration: 1 / (colors.length - 1) }, i / (colors.length - 1)));
+    timeline.fromTo(disc, { x: () => sky.clientWidth * .06 }, { x: () => sky.clientWidth - disc.offsetWidth - sky.clientWidth * .06, duration: 1 }, 0);
+    timeline.fromTo(disc, { y: () => sky.clientHeight + 4 }, { y: () => sky.clientHeight * .12, duration: .42, ease: 'sine.out' }, .02);
+    timeline.to(disc, { y: () => sky.clientHeight + 4, duration: .4, ease: 'sine.in' }, .58);
+    return () => section.removeAttribute('data-track');
+  });
+});
+</script>
+<script data-8b-part="scene:courtyard">
+queueMotion(() => {
+  const section = document.getElementById('courtyard');
+  const view = section.querySelector('.cy-window');
+  const panes = gsap.utils.toArray('.cy-pane', view);
+  const tints = gsap.utils.toArray('.cy-tint', view);
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const offsets = [[-5, -20], [4, 16], [-3, -11], [6, 22], [-6, 12], [3, -18]];
+    const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { id: 'courtyard', trigger: view, start: 'top 92%', end: 'center 52%', scrub: .6 }
+    });
+    panes.forEach((pane, i) => timeline.fromTo(pane, { xPercent: offsets[i][0], yPercent: offsets[i][1] }, { xPercent: 0, yPercent: 0, duration: 1, ease: 'power2.out' }, 0));
+    tints.forEach((tint, i) => timeline.fromTo(tint, { opacity: .94 }, { opacity: 0, duration: .55 }, .3 + i * .03));
+  });
+});
+</script>
+<script data-8b-part="scene:quiet">
+queueMotion(() => {
+  const section = document.getElementById('quiet');
+  const list = section.querySelector('.qt-rules');
+  const rules = gsap.utils.toArray('.qt-rule', list);
+  const words = rules.map(rule => rule.querySelector('.qt-word'));
+  const loud = getComputedStyle(document.documentElement).getPropertyValue('--color-3').trim();
+  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+    const rest = rules.map(rule => getComputedStyle(rule).backgroundColor);
+    const weight = getComputedStyle(words[0]).fontWeight;
+    const scale = window.innerWidth < 768 ? .45 : 1;
+    const tilt = [[-7, -50, 34], [6, 40, -26], [-5, -26, 30], [8, 56, -36]];
+    const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { id: 'quiet', trigger: list, start: 'top 95%', end: 'center 56%', scrub: .6 }
+    });
+    rules.forEach((rule, i) => {
+      timeline.fromTo(rule, { rotation: tilt[i][0] * scale, y: tilt[i][1] * scale, x: tilt[i][2] * scale }, { rotation: 0, y: 0, x: 0, duration: 1, ease: 'power2.out' }, 0);
+      timeline.fromTo(rule, { backgroundColor: loud }, { backgroundColor: rest[i], duration: .6 }, .35);
+      timeline.fromTo(words[i], { fontWeight: 900 }, { fontWeight: weight, duration: .7 }, .25);
+    });
+  });
+});
+</script>
+<script data-8b-part="scene:contact">
+queueMotion(() => {
+  const section = document.getElementById('contact');
+  const grid = section.querySelector('.ct-grid');
+  const call = section.querySelector('.ct-call');
+  const write = section.querySelector('.ct-write');
+  const visit = section.querySelector('.ct-visit');
+  const hours = section.querySelector('.ct-hours');
+  gsap.matchMedia().add({
+    wide: '(min-width: 900.02px) and (prefers-reduced-motion: no-preference)',
+    narrow: '(max-width: 900px) and (prefers-reduced-motion: no-preference)'
+  }, context => {
+    const { wide } = context.conditions;
+    const timeline = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: { id: 'contact', trigger: grid, start: 'top 92%', end: () => wide ? 'top 22%' : 'top 40%', scrub: .6, invalidateOnRefresh: true }
+    });
+    timeline.fromTo(call, { xPercent: wide ? -80 : -40 }, { xPercent: 0, duration: 1, ease: 'power2.out' }, 0)
+      .fromTo(write, { xPercent: wide ? 80 : 40 }, { xPercent: 0, duration: 1, ease: 'power2.out' }, 0)
+      .fromTo(visit, { yPercent: -60 }, { yPercent: 0, duration: 1, ease: 'power2.out' }, 0)
+      .fromTo(hours, { yPercent: 60 }, { yPercent: 0, duration: 1, ease: 'power2.out' }, 0);
+    if (wide) {
+      timeline.fromTo(call.querySelector('.ct-label'), { rotation: 0 }, { rotation: -90, duration: .6, ease: 'power2.inOut' }, .35)
+        .fromTo(write.querySelector('.ct-label'), { rotation: 0 }, { rotation: 90, duration: .6, ease: 'power2.inOut' }, .35);
+    }
+  });
+});
+</script>
+<!-- demo only: link to the template's repository -->
+<div style="position:fixed;right:16px;bottom:16px;z-index:2147483647"><a class="m-btn" href="https://github.com/8bsite/pet-boarding-website-template"><span class="m-btn__label">Free 8B template. Get on GitHub →</span></a></div>
+</body>
+</html>
