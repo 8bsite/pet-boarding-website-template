@@ -1,6 +1,6 @@
 # AGENTS.md: pet boarding website template
 
-Website for a cat boarding house or pet hotel, with rooms and prices, a daily routine, the staff and a booking form. One file, `index.html`, with inline CSS and scripts (GSAP, ScrollTrigger, Lenis from jsDelivr); no build step, and none is needed for copy, colour or photo edits.
+Website for a cat boarding house or pet hotel, with rooms and prices, a daily routine, the staff and a booking form. One file, `index.html`, with inline CSS and scripts, no JavaScript libraries: the scroll motion is CSS scroll-driven animations plus a small inline motion kit; no build step, and none is needed for copy, colour or photo edits. A GSAP build of the same page is `index.gsap.html` (GSAP 3.13.0, ScrollTrigger, SplitText, Lenis 1.3.27 from jsDelivr): edit one of the two, not both.
 
 ## Files
 Edit these files, not a page fetched by URL (that arrives as a summary).
@@ -14,19 +14,16 @@ Upload `index.html`, LICENSE and CREDITS.md; not this file, README.md or `previe
 
 ## Keep
 - Every `id`, `data-8b-section`, `data-8b-motion` and `data-8b-part` (`section:<id>` styles, `scene:<id>` animation).
+- The motion parts `motion-gate` (head: sets `data-8b-live` on `<html>` only with scroll-driven animation support and no reduced motion), `motion-kit` and `motion`, and every other `data-8b-*` attribute (`data-8b-items` groups, `data-8b-off`, `data-8b-enter`): the CSS and the kit read them. Items ordered by `--i` follow their group; counts the CSS fixes are listed under Known limits (`data-8b-fixed` marks such a group).
 - Selectors the scripts use:
   - `section-script:nav`: `.nav__toggle` `.nav__close`
   - `section-script:opening`: `.op-s1`
   - `section-script:contact`: `.ct-status`
-  - `scene:opening`: `.op-s1` `.op-s2` `.op-ink` `.op-ink__curl` `.op-a` `.op-e` `.op-c` `.op-d` `.op-b` `.op-win` `.op-house`
-  - `scene:rooms`: `.rm-room` `.rm-tower` `.rm-name`
-  - `scene:day`: `.dy-stage` `.dy-rail` `.dy-track` `.dy-sky` `.dy-disc`
-  - `scene:courtyard`: `.cy-window` `.cy-pane` `.cy-tint`
-  - `scene:quiet`: `.qt-rules` `.qt-rule` `.qt-word`
-  - `scene:contact`: `.ct-grid` `.ct-call` `.ct-write` `.ct-visit` `.ct-hours` `.ct-label`
+  - `scene-script:rooms`: `.rm-room`
+  - `scene-script:day`: `.dy-rail` `.dy-track`
 - `style="--len:N"` = characters in that display line, spaces included: `The Tower` is 9, `Call` is 4, `Write` is 5, `Sill` is 4.
 - The colour panels, gutters, the black hill, the disc and the curls are CSS and SVG, not images: recolour them through the colour variables in :root.
-- The opening facade has exactly twelve windows and the quiet section exactly four rules; the scenes and the grid are built for those counts.
+- The opening facade has exactly twelve windows, the courtyard window exactly six panes and the quiet section exactly four rules: the motion CSS times each window and pane by its :nth-of-type position, and each rule carries its own start tilt and colour in inline variables, so adding or removing one needs matching CSS.
 - Colours and fonts are variables in `:root` (`data-8b-part="tokens"`): `--color-1` #0b0a0a (black page and gutters), `--color-2` #f4f1ee (off-white text), `--color-3` #cf6224 (orange panels, sky, wordmark), `--color-4` #6e1116 (maroon panels), `--color-5` #5a3cd4 (violet panels), `--color-6` #bca59d (taupe panels and form), `--color-7` #a97d9c (mauve panels), `--color-8` #9b3418 (rust panel behind the rooms heading and the Brushing hour), `--color-9` #80a89b (sage panels), `--color-10` #e3b867 (mustard panels, button hover); body text needs 4.5:1 contrast.
 - With reduced motion the page must read in full.
 - Keep the header comment and `<meta name="generator">`. Keep the "Design: 8B" footer link unless the site owner asks to remove it.
@@ -35,7 +32,7 @@ Upload `index.html`, LICENSE and CREDITS.md; not this file, README.md or `previe
 - `data-8b-placeholder` (og-image, favicon, phone, form, email): real value in, attribute out; no value, remove the row (no image: drop `og:image`, set `twitter:card` to `summary`).
 - Book a stay buttons in the nav, the phone menu, the first screen and the footer: now #contact; owner's target: your online booking page, or keep #contact once the form is connected.
 - Ask for dates in the Winter holidays notice on the first screen: now #contact; owner's target: your booking page or a page about holiday availability.
-- The form in `#contact` (fields `name`, `email`, `cat`, `arrival`, `departure`, `room`, `notes`) sends nothing; `section-script:contact` validates it and shows the thank-you text. Formspree: `action="https://formspree.io/f/<id>"` and `fetch` POST `new FormData(form)` first. Netlify: `data-netlify="true"` and a hidden `form-name`. Or delete it and the script.
+- The form in `#contact` (fields `name`, `email`, `cat`, `arrival`, `departure`, `room`, `notes`) sends nothing; `section-script:contact` handles its submit in the page (read it before you connect a service). Formspree: `action="https://formspree.io/f/<id>"` and `fetch` POST `new FormData(form)` first. Netlify: `data-netlify="true"` and a hidden `form-name`. Or delete it and the script.
 - The name Sill (any letter case); the favicon letter and colours in `<link rel="icon">`.
 - Photos (25, Unsplash: opening 6, rooms 3, letters 3, day 6, sitters 4, courtyard 2, visit 1): `src`, no `srcset`/`sizes`, `width`/`height` to the ratio, `alt`, CREDITS.md.
 - `<title>`, meta description, og tags.
@@ -54,13 +51,14 @@ All demo text, never to be invented:
 - The building and courtyard: no street side, two brick wings, a lawn, "a linden tree, sixty years old", a feeder refilled at seven, ivy that turns red in October, sparrows at six (opening, courtyard).
 - House rules: no dogs at all, one cat per room unless siblings, a separate vent per room, "a cat clinic two streets away, on call day and night" (quiet).
 - Booking terms: vaccinations against cat flu and feline panleukopenia at least two weeks before arrival and the passport on the first day; minimum stay two nights; day guests on weekdays from eight to six (faq).
-- Hours: phone daily 8–20 (contact); drop-off and pick-up 8:00–11:00 and 17:00–19:00, Sundays evening only (faq, contact).
+- Hours: phone daily 8-20 (contact); drop-off and pick-up 8:00-11:00 and 17:00-19:00, Sundays evening only (faq, contact).
 - "© 2026 Sill" and "Twelve rooms, four sitters, one courtyard" (footer).
 
 ## Known limits
 - Without JavaScript the phone menu button cannot open the overlay. The footer repeats Rooms, A day at Sill, The courtyard, First visit and Book a stay, but Questions (#faq) has no other link on phones.
-- In rooms, the text inside each room panel is clipped until the panel has grown; it is complete when the panel is in the middle of the screen.
+- In rooms, while the motion plays, the text inside each room panel is clipped until the panel has grown; it is complete when the panel is in the middle of the screen.
+- Without scroll-driven animation support (Firefox today) or with reduced motion on, the scroll scenes do not run: the opening has no black hill, the day section shows its six panels as a plain grid without the sky band and the disc, and the wheel scrolls natively. The load-in of the first screen and its slow photo pan still play unless reduced motion is on.
 - The handwriting face is a third font family used only for the three letters; drop it and use the body font if you need fewer font files.
 
 ## Check
-375 and 1440 px, reduced motion on, console clean; `data-8b-placeholder` and Sill left only in class names.
+375 and 1440 px, reduced motion on, a browser without scroll-driven animations (Firefox: the finished static layout), console clean; `data-8b-placeholder` and Sill left only in class names.

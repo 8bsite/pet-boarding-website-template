@@ -4,6 +4,7 @@
   Source: https://github.com/8bsite/pet-boarding-website-template
   MIT License (code) https://8b.com/ · Photos: Unsplash License, see CREDITS.md · Fonts: Google Fonts (OFL)
   One HTML file, no build step. Notes for people and AI agents: README.md and AGENTS.md.
+  Scroll motion: CSS scroll-driven animations and an inline script, no libraries. A GSAP build of this page: index.gsap.html.
 -->
 <html lang="en">
 <head>
@@ -108,10 +109,6 @@
   a { color: inherit; }
   button, input, select, textarea { font: inherit; color: inherit; }
   :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
-  html.lenis, html.lenis body { height: auto; }
-  .lenis-stopped { overflow: clip; }
-  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-  .lenis.lenis-smooth iframe { pointer-events: none; }
 }
 </style>
 <style data-8b-part="system">
@@ -281,13 +278,6 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
   }
 }
 </style>
-<style data-8b-part="scene-style:opening">
-@layer scenes {
-  @media (prefers-reduced-motion: no-preference) {
-    #opening[data-ink] .op-ink { display: block; }
-  }
-}
-</style>
 <style data-8b-part="section:rooms">
 @layer sections {
   #rooms { padding: clamp(56px, 9svh, 110px) var(--space-1) var(--space-1); }
@@ -368,25 +358,6 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
   #day .dy-photo { aspect-ratio: 4 / 3; margin: auto calc(-1 * var(--space-2)) 0; }
   @media (max-width: 1000px) { #day .dy-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { #day .dy-track { grid-template-columns: 1fr; } }
-}
-</style>
-<style data-8b-part="scene-style:day">
-@layer scenes {
-  @media (prefers-reduced-motion: no-preference) {
-    #day[data-track] { padding: 0; }
-    #day[data-track] .dy-stage { height: 100svh; padding: calc(64px + var(--space-1)) var(--space-1) var(--space-1); grid-template-rows: auto minmax(0, .5fr) minmax(0, 1fr); overflow: hidden; }
-    #day[data-track] .dy-sky { display: block; position: relative; overflow: hidden; background: var(--color-3); }
-    #day[data-track] .dy-disc { position: absolute; left: 0; top: 0; width: clamp(84px, 15vmin, 160px); aspect-ratio: 1; border-radius: 50%; background: var(--color-1); }
-    #day[data-track] .dy-rail { min-height: 0; }
-    #day[data-track] .dy-track { display: flex; width: max-content; height: 100%; }
-    #day[data-track] .dy-hour { width: clamp(290px, 31vw, 450px); padding-top: clamp(16px, 2vw, 28px); gap: 6px; }
-    #day[data-track] .dy-photo { aspect-ratio: auto; flex: 1 1 0; min-height: 90px; }
-  }
-  @media (prefers-reduced-motion: no-preference) and (max-width: 767.98px) {
-    #day[data-track] .dy-stage { padding-top: calc(56px + var(--space-1)); grid-template-rows: auto minmax(0, .38fr) minmax(0, 1fr); }
-    #day[data-track] .dy-hour { width: 80vw; }
-    #day[data-track] .dy-head .m-text { display: none; }
-  }
 }
 </style>
 <style data-8b-part="section:sitters">
@@ -574,6 +545,226 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
   }
 }
 </style>
+<style data-8b-part="motion">
+@layer scenes {
+[data-8b-live] { --ease-power3-out: linear(0, 0.0963, 0.1855, 0.2679, 0.3439, 0.4138, 0.478, 0.5367, 0.5904, 0.6392, 0.6836, 0.7237, 0.7599, 0.7924, 0.8215, 0.8474, 0.8704, 0.8907, 0.9085, 0.924, 0.9375, 0.9491, 0.959, 0.9674, 0.9744, 0.9802, 0.985, 0.9888, 0.9919, 0.9943, 0.9961, 0.9974, 0.9984, 0.9991, 0.9995, 0.9998, 0.9999, 1, 1, 1, 1); }
+[data-8b-live] [data-8b-motion~="rise"] .line__in { animation-name: motion-rise-line-in-translate; animation-duration: 0.9s; animation-delay: calc(0s + 0.09s * var(--i)); animation-timing-function: var(--ease-power3-out); animation-fill-mode: both; animation-play-state: paused; transform: none; }
+[data-8b-live] [data-8b-motion~="rise"].is-in .line__in { animation-play-state: running; }
+[data-8b-live] #footer .ft-mark { overflow-x: clip; overflow-y: clip; }
+[data-8b-live] [data-8b-motion~="curl"] { view-timeline: --motion-curl block; view-timeline-inset: 0; }
+[data-8b-live] [data-8b-motion~="curl"] path { animation-name: motion-curl-path-strokedashoffset; animation-timeline: --motion-curl; animation-range: cover 5vh cover calc(100% - 45vh); animation-timing-function: linear; animation-fill-mode: both; }
+[data-8b-live] [data-8b-motion~="peek"] { view-timeline: --motion-peek block; view-timeline-inset: 0; }
+[data-8b-live] [data-8b-motion~="peek"] > :first-child { animation-name: motion-peek; animation-timeline: --motion-peek; animation-range: cover 0% cover 60vh; animation-timing-function: linear; animation-fill-mode: both; }
+@keyframes motion-peek { 0% { translate: 0px 42%; } 100% { translate: 0px 0px; } }
+@keyframes motion-rise-line-in-translate { 0% { translate: 0px calc(108% + 0.1296em); } 100% { translate: 0px 0px; } }
+@keyframes motion-curl-path-strokedashoffset { 0% { stroke-dashoffset: 1px; } 99.998% { stroke-dashoffset: 0.0002px; } 100% { stroke-dashoffset: 0px; } }
+}
+</style>
+<style data-8b-part="scene:opening">
+@layer scenes {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-8b-live] #opening .op-ink { display: block; }
+  }
+}
+@layer scenes {
+[data-8b-live] #opening { timeline-scope: --opening-t1; }
+[data-8b-live] #opening .op-s2 { view-timeline: --opening-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #opening .op-ink { animation-timeline: --opening-t1; animation-timing-function: linear; animation-fill-mode: both; transform: none; }
+[data-8b-live] #opening .op-a, [data-8b-live] #opening .op-e, [data-8b-live] #opening .op-c, [data-8b-live] #opening .op-d, [data-8b-live] #opening .op-b { animation-timeline: --opening-t1; animation-timing-function: cubic-bezier(0.3333, 0, 0.6667, 0.3333); animation-fill-mode: both; transform: none; }
+[data-8b-live] #opening .op-ink__curl > path { animation-name: opening-svg-m-curl-path-strokedashoffset; animation-timeline: --opening-t1; animation-timing-function: linear; animation-fill-mode: both; }
+[data-8b-live] #opening .op-house > li { animation-timeline: --opening-t1; animation-timing-function: cubic-bezier(0.3333, 0.6667, 0.6667, 1); animation-fill-mode: both; }
+[data-8b-live] #opening .op-house > .m-surface-4 > .m-photo > img, [data-8b-live] #opening .op-house > li:is(:nth-of-type(6), :nth-of-type(7), :nth-of-type(10), :nth-of-type(12)) > .m-photo > img { animation-timeline: --opening-t1; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-fill-mode: both; transform: none; }
+@keyframes opening-div-op-ink-translate-d { 0% { translate: 0px 0px; } 100% { translate: 0px -46.364%; } }
+@keyframes opening-div-op-ink-translate-m { 0% { translate: 0px 0px; } 100% { translate: 0px -42.5%; } }
+@keyframes opening-div-op-cell-translate-d { 0% { translate: 0px 0px; } 100% { translate: -4.627% -16vh; } }
+@keyframes opening-div-op-cell-translate-m { 0% { translate: 0px 0px; } 100% { translate: -4.178% -12vh; } }
+@keyframes opening-div-op-cell-translate-2-d { 0% { translate: 0px 0px; } 100% { translate: 5vw -30vh; } }
+@keyframes opening-div-op-cell-translate-2-m { 0% { translate: 0px 0px; } 100% { translate: 12.821% -22vh; } }
+@keyframes opening-div-op-cell-translate-3-d { 0% { translate: 0px 0px; } 100% { translate: -6vw 5.074%; } }
+@keyframes opening-div-op-cell-translate-3-m { 0% { translate: 0px 0px; } 100% { translate: -5.223% 2vh; } }
+@keyframes opening-div-op-cell-translate-4-d { 0% { translate: 0px 0px; } 100% { translate: 4.233% -10vh; } }
+@keyframes opening-div-op-cell-translate-4-m { 0% { translate: 0px 0px; } 100% { translate: 2.089% -8vh; } }
+@keyframes opening-div-op-cell-translate-5-d { 0% { translate: 0px 0px; } 100% { translate: 18.828% -20vh; } }
+@keyframes opening-div-op-cell-translate-5-m { 0% { translate: 0px 0px; } 100% { translate: -12.821% -18vh; } }
+@keyframes opening-svg-m-curl-path-strokedashoffset { 0% { stroke-dashoffset: 1px; } 99.998% { stroke-dashoffset: 0.0002px; } 100% { stroke-dashoffset: 0px; } }
+@keyframes opening-li-op-win-clippath { 0% { clip-path: inset(100% 0% 0%); } 99.998% { clip-path: inset(0.0001% 0% 0%); } 100% { clip-path: inset(0%); } }
+@keyframes opening-div-m-photo-img-translate-d { 0% { translate: 0px 45%; } 0.002% { translate: 0px 44.932%; } 100% { translate: 0px 0px; } }
+@keyframes opening-div-m-photo-img-translate-m { 0% { translate: 0px 45%; } 100% { translate: 0px 0px; } }
+@keyframes opening-li-op-win-clippath-2 { 0% { clip-path: inset(var(--opening-li-op-win-clippath-2-from, 100%) 0% 0%); } 99.998% { clip-path: inset(0.0001% 0% 0%); } 100% { clip-path: inset(0%); } }
+@keyframes opening-div-m-photo-img-translate-2 { 0% { translate: 0px 45%; } 0.002% { translate: 0px 44.932%; } 100% { translate: 0px 0px; } }
+@media (min-width: 768px) {
+  [data-8b-live] #opening .op-ink { animation-name: opening-div-op-ink-translate-d; animation-range: cover 0% cover 99.1326vh; }
+  [data-8b-live] #opening .op-a, [data-8b-live] #opening .op-e, [data-8b-live] #opening .op-c, [data-8b-live] #opening .op-d, [data-8b-live] #opening .op-b { animation-range: cover 0% cover 84.2627vh; }
+  [data-8b-live] #opening .op-a { animation-name: opening-div-op-cell-translate-d; }
+  [data-8b-live] #opening .op-e { animation-name: opening-div-op-cell-translate-2-d; }
+  [data-8b-live] #opening .op-c { animation-name: opening-div-op-cell-translate-3-d; }
+  [data-8b-live] #opening .op-d { animation-name: opening-div-op-cell-translate-4-d; }
+  [data-8b-live] #opening .op-b { animation-name: opening-div-op-cell-translate-5-d; }
+  [data-8b-live] #opening .op-ink__curl > path { animation-range: cover 5.948vh cover 47.5836vh; }
+  [data-8b-live] #opening .op-house > .m-surface-4 { animation-range: cover 14.6221vh cover 28.5006vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(4) { animation-range: cover 16.6047vh cover 30.4833vh; }
+  [data-8b-live] #opening .op-house > li { animation-name: opening-li-op-win-clippath; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(1) { animation-range: cover 17.596vh cover 31.4746vh; }
+  [data-8b-live] #opening .op-house > .m-surface-4 > .m-photo > img, [data-8b-live] #opening .op-house > li:is(:nth-of-type(6), :nth-of-type(7), :nth-of-type(10), :nth-of-type(12)) > .m-photo > img { animation-name: opening-div-m-photo-img-translate-d; }
+  [data-8b-live] #opening .op-house > .m-surface-4 > .m-photo > img { animation-range: cover 18.5874vh cover 38.4139vh; }
+  [data-8b-live] #opening .op-house > .m-surface-3 { animation-range: cover 19.5787vh cover 33.4572vh; }
+  [data-8b-live] #opening .op-house > .m-surface-2 { animation-range: cover 44.4857vh cover 58.3643vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(6) { animation-range: cover 45.4771vh cover 59.3556vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(7) { animation-range: cover 47.4597vh cover 61.3383vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(6) > .m-photo > img { animation-range: cover 49.4424vh cover 69.2689vh; }
+  [data-8b-live] #opening .m-surface-6 { animation-range: cover 50.4337vh cover 64.3123vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(7) > .m-photo > img { animation-range: cover 51.425vh cover 71.2515vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(12) { animation-range: cover 75.2169vh cover 89.0954vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(10) { animation-range: cover 76.2082vh cover 90.0867vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(9) { animation-range: cover 79.1822vh cover 93.0607vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(12) > .m-photo > img { animation-range: cover 79.1822vh cover 99.0087vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(10) > .m-photo > img { animation-range: cover 80.1735vh cover 100vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(11) { animation-range: cover 80.1735vh cover 94.052vh; }
+}
+@media (max-width: 767px) {
+  [data-8b-live] #opening .op-ink { animation-name: opening-div-op-ink-translate-m; animation-range: cover 0% cover 92.5926vh; }
+  [data-8b-live] #opening .op-a, [data-8b-live] #opening .op-e, [data-8b-live] #opening .op-c, [data-8b-live] #opening .op-d, [data-8b-live] #opening .op-b { animation-range: cover 0% cover 78.7037vh; }
+  [data-8b-live] #opening .op-a { animation-name: opening-div-op-cell-translate-m; }
+  [data-8b-live] #opening .op-e { animation-name: opening-div-op-cell-translate-2-m; }
+  [data-8b-live] #opening .op-c { animation-name: opening-div-op-cell-translate-3-m; }
+  [data-8b-live] #opening .op-d { animation-name: opening-div-op-cell-translate-4-m; }
+  [data-8b-live] #opening .op-b { animation-name: opening-div-op-cell-translate-5-m; }
+  [data-8b-live] #opening .op-ink__curl > path { animation-range: cover 5.5556vh cover 44.4444vh; }
+  [data-8b-live] #opening .op-house > .m-surface-4 { animation-range: cover 42.6018vh cover 55.5647vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(4) { animation-range: cover 58.1372vh cover 71.1002vh; }
+  [data-8b-live] #opening .op-house > li { animation-name: opening-li-op-win-clippath-2; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(1) { animation-range: cover 45.3794vh cover 58.3425vh; }
+  [data-8b-live] #opening .op-house > .m-surface-4 > .m-photo > img { animation-name: opening-div-m-photo-img-translate-m; animation-range: cover 46.3055vh cover 64.8239vh; }
+  [data-8b-live] #opening .op-house > .m-surface-3 { animation-range: cover 47.2314vh cover 60.1944vh; }
+  [data-8b-live] #opening .op-house > .m-surface-2 { animation-range: cover 69.969vh cover 82.9319vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(6) { animation-range: cover 57.2113vh cover 70.1743vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(7) { animation-range: cover 72.7468vh cover 85.7097vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(6) > .m-photo > img { animation-name: opening-div-m-photo-img-translate-2; animation-range: cover 60.915vh cover 79.4335vh; }
+  [data-8b-live] #opening .m-surface-6 { animation-range: cover 61.8409vh cover 74.8039vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(7) > .m-photo > img { animation-name: opening-div-m-photo-img-translate-2; animation-range: cover 76.4505vh cover 94.969vh; }
+  [data-8b-live] #opening .op-house > li:is(:nth-of-type(10), :nth-of-type(12)) { animation-range: cover 77.7778vh cover 90.7407vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(9) { animation-range: cover 74.5986vh cover 87.5616vh; }
+  [data-8b-live] #opening .op-house > li:is(:nth-of-type(10), :nth-of-type(12)) > .m-photo > img { animation-name: opening-div-m-photo-img-translate-2; animation-range: cover 81.4815vh cover 100vh; }
+  [data-8b-live] #opening .op-house > li:nth-of-type(11) { animation-range: cover 77.7778vh cover 90.7407vh; }
+}
+}
+</style>
+<style data-8b-part="scene:rooms">
+@layer scenes {
+[data-8b-live] { --ease-power2-inout: linear(0, 0.0001, 0.0005, 0.0017, 0.004, 0.0078, 0.0135, 0.0214, 0.032, 0.0456, 0.0625, 0.0832, 0.108, 0.1373, 0.1715, 0.2109, 0.256, 0.3071, 0.3645, 0.4287, 0.5, 0.5713, 0.6355, 0.6929, 0.744, 0.7891, 0.8285, 0.8627, 0.892, 0.9168, 0.9375, 0.9544, 0.968, 0.9786, 0.9865, 0.9922, 0.996, 0.9983, 0.9995, 0.9999, 1); }
+[data-8b-live] #rooms .rm-tower { view-timeline: --rooms-t1 block; view-timeline-inset: 0; animation-timeline: --rooms-t1; animation-range: cover 12vh cover calc(100% - 78vh); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); animation-fill-mode: both; }
+[data-8b-live] #rooms .rm-ledge { view-timeline: --rooms-t2 block; view-timeline-inset: 0; animation-timeline: --rooms-t2; animation-range: cover 12vh cover calc(100% - 78vh); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); animation-fill-mode: both; }
+[data-8b-live] #rooms .rm-burrow { view-timeline: --rooms-t3 block; view-timeline-inset: 0; animation-timeline: --rooms-t3; animation-range: cover 12vh cover calc(100% - 78vh); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); animation-fill-mode: both; }
+[data-8b-live] #rooms .rm-tower > .rm-body > .m-text-6 { animation-name: rooms-h3-m-text-6-rotate; animation-timeline: --rooms-t1; animation-range: cover calc(30% - 15vh) cover calc(100% - 78vh); animation-timing-function: var(--ease-power2-inout); animation-fill-mode: both; transform: none; }
+[data-8b-live] #rooms .rm-room { --rooms-square: calc(var(--rooms-side, 0px) * 0.9); animation-name: rooms-article-rm-room-clippath; }
+@keyframes rooms-article-rm-room-clippath { 0% { clip-path: inset(calc(100% - var(--rooms-square)) calc(100% - var(--rooms-square)) 0px 0px); } 100% { clip-path: inset(0px); } }
+@keyframes rooms-h3-m-text-6-rotate { 0% { rotate: 0deg; } 100% { rotate: -90deg; } }
+@media (max-width: 767px) {
+  [data-8b-live] #rooms .rm-room { --rooms-square: calc(var(--rooms-side, 0px) * 0.62); }
+}
+}
+</style>
+<style data-8b-part="scene:day">
+@layer scenes {
+[data-8b-live] #day { padding: 0; height: calc(100svh + max(100vh, 1.15 * var(--day-travel, 0px))); view-timeline: --day block; view-timeline-inset: 0; }
+[data-8b-live] #day .dy-stage { position: sticky; top: 0; height: 100svh; padding: calc(64px + var(--space-1)) var(--space-1) var(--space-1); grid-template-rows: auto minmax(0, .5fr) minmax(0, 1fr); overflow: clip; }
+[data-8b-live] #day .dy-sky { display: block; position: relative; overflow: clip; container-type: size; background: var(--color-3); animation-name: day-sky; }
+[data-8b-live] #day .dy-disc { position: absolute; left: 0; top: 0; width: clamp(84px, 15vmin, 160px); aspect-ratio: 1; border-radius: 50%; background: var(--color-1); animation-name: day-disc-x, day-disc-y; }
+[data-8b-live] #day .dy-rail { min-height: 0; }
+[data-8b-live] #day .dy-track { display: flex; width: max-content; height: 100%; animation-name: day-track; }
+[data-8b-live] #day .dy-sky, [data-8b-live] #day .dy-disc, [data-8b-live] #day .dy-track { animation-timeline: --day; animation-range: contain 0% contain 100%; animation-timing-function: linear; animation-fill-mode: both; }
+[data-8b-live] #day .dy-hour { width: clamp(290px, 31vw, 450px); padding-top: clamp(16px, 2vw, 28px); gap: 6px; }
+[data-8b-live] #day .dy-photo { aspect-ratio: auto; flex: 1 1 0; min-height: 90px; }
+@keyframes day-track { 0% { translate: 0px 0px; } 100% { translate: calc(-1 * var(--day-travel, 0px)) 0px; } }
+@keyframes day-sky { 0% { background-color: var(--color-3); } 20% { background-color: var(--color-10); } 40% { background-color: var(--color-9); } 60% { background-color: var(--color-6); } 80% { background-color: var(--color-7); } 100% { background-color: var(--color-5); } }
+@keyframes day-disc-x { 0% { translate: 6cqw 0px; } 100% { translate: calc(94cqw - 100%) 0px; } }
+@keyframes day-disc-y { 0%, 2% { transform: translateY(calc(100cqh + 4px)); animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1); } 44%, 58% { transform: translateY(12cqh); animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0); } 98%, 100% { transform: translateY(calc(100cqh + 4px)); } }
+@media (max-width: 767.98px) {
+  [data-8b-live] #day .dy-stage { padding-top: calc(56px + var(--space-1)); grid-template-rows: auto minmax(0, .38fr) minmax(0, 1fr); }
+  [data-8b-live] #day .dy-hour { width: 80vw; }
+  [data-8b-live] #day .dy-head .m-text { display: none; }
+}
+}
+</style>
+<style data-8b-part="scene:courtyard">
+@layer scenes {
+[data-8b-live] #courtyard .cy-window { view-timeline: --courtyard-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(-n+6), [data-8b-live] #courtyard .cy-window > div:nth-of-type(-n+6) > .cy-tint { animation-timeline: --courtyard-t1; animation-fill-mode: both; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(-n+6) { animation-range: cover 8vh cover calc(50% - 2vh); animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); transform: none; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(1) { animation-name: courtyard-div-cy-pane-translate; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(2) { animation-name: courtyard-div-cy-pane-translate-2; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(3) { animation-name: courtyard-div-cy-pane-translate-3; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(4) { animation-name: courtyard-div-cy-pane-translate-4; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(5) { animation-name: courtyard-div-cy-pane-translate-5; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(6) { animation-name: courtyard-div-cy-pane-translate-6; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(-n+6) > .cy-tint { animation-name: courtyard-span-cy-tint-opacity; animation-timing-function: linear; }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(1) > .cy-tint { animation-range: cover calc(15% + 5vh) cover calc(42.5% - 0.5vh); }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(2) > .cy-tint { animation-range: cover calc(16.5% + 4.7vh) cover calc(44% - 0.8vh); }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(3) > .cy-tint { animation-range: cover calc(18% + 4.4vh) cover calc(45.5% - 1.1vh); }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(4) > .cy-tint { animation-range: cover calc(19.5% + 4.1vh) cover calc(47% - 1.4vh); }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(5) > .cy-tint { animation-range: cover calc(21% + 3.8vh) cover calc(48.5% - 1.7vh); }
+[data-8b-live] #courtyard .cy-window > div:nth-of-type(6) > .cy-tint { animation-range: cover calc(22.5% + 3.5vh) cover calc(50% - 2vh); }
+@keyframes courtyard-div-cy-pane-translate { 0% { translate: -5% -20%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-div-cy-pane-translate-2 { 0% { translate: 4% 16%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-div-cy-pane-translate-3 { 0% { translate: -3% -11%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-div-cy-pane-translate-4 { 0% { translate: 6% 22%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-div-cy-pane-translate-5 { 0% { translate: -6% 12%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-div-cy-pane-translate-6 { 0% { translate: 3% -18%; } 100% { translate: 0px 0px; } }
+@keyframes courtyard-span-cy-tint-opacity { 0% { opacity: 0.94; } 100% { opacity: 0; } }
+}
+</style>
+<style data-8b-part="scene:quiet">
+@layer scenes {
+[data-8b-live] #quiet .qt-rules { view-timeline: --quiet-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #quiet .qt-rules > li { animation-timeline: --quiet-t1; animation-range: cover 5vh cover calc(50% - 6vh), cover 5vh cover calc(50% - 6vh), cover calc(17.5% + 1.15vh) cover calc(47.5% - 5.45vh); animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1), cubic-bezier(0.3333, 1, 0.6667, 1), linear; animation-fill-mode: both; transform: none; }
+[data-8b-live] #quiet .qt-rules > li > .m-text-8 { -webkit-text-stroke-color: currentColor; animation-name: quiet-p-m-text-8-stroke; animation-timeline: --quiet-t1; animation-range: cover calc(12.5% + 2.25vh) cover calc(47.5% - 5.45vh); animation-timing-function: linear; animation-fill-mode: both; }
+@keyframes quiet-li-qt-rule-rotate-d { 0% { rotate: var(--quiet-li-qt-rule-rotate-from, -7deg); } 100% { rotate: 0deg; } }
+@keyframes quiet-li-qt-rule-rotate-m { 0% { rotate: var(--quiet-li-qt-rule-rotate-from-m, -3.15deg); } 100% { rotate: 0deg; } }
+@keyframes quiet-li-qt-rule-translate-d { 0% { translate: var(--quiet-li-qt-rule-translate-from, 34px) var(--quiet-li-qt-rule-translate-from-2, -50px); } 100% { translate: 0px 0px; } }
+@keyframes quiet-li-qt-rule-translate-m { 0% { translate: var(--quiet-li-qt-rule-translate-from-m, 15.3px) var(--quiet-li-qt-rule-translate-from-2-m, -22.5px); } 100% { translate: 0px 0px; } }
+@keyframes quiet-li-qt-rule-backgroundcolor { 0% { background-color: var(--color-3); } 100% { background-color: rgb(var(--quiet-li-qt-rule-backgroundcolor-to, 128), var(--quiet-li-qt-rule-backgroundcolor-to-2, 168), var(--quiet-li-qt-rule-backgroundcolor-to-3, 155)); } }
+@keyframes quiet-p-m-text-8-stroke { 0% { -webkit-text-stroke-width: 0.045em; } 100% { -webkit-text-stroke-width: 0px; } }
+@media (min-width: 768px) {
+  [data-8b-live] #quiet .qt-rules > li { animation-name: quiet-li-qt-rule-rotate-d, quiet-li-qt-rule-translate-d, quiet-li-qt-rule-backgroundcolor; }
+}
+@media (max-width: 767px) {
+  [data-8b-live] #quiet .qt-rules > li { animation-name: quiet-li-qt-rule-rotate-m, quiet-li-qt-rule-translate-m, quiet-li-qt-rule-backgroundcolor; }
+}
+}
+</style>
+<style data-8b-part="scene:contact">
+@layer scenes {
+[data-8b-live] { --ease-power2-inout: linear(0, 0.0001, 0.0005, 0.0017, 0.004, 0.0078, 0.0135, 0.0214, 0.032, 0.0456, 0.0625, 0.0832, 0.108, 0.1373, 0.1715, 0.2109, 0.256, 0.3071, 0.3645, 0.4287, 0.5, 0.5713, 0.6355, 0.6929, 0.744, 0.7891, 0.8285, 0.8627, 0.892, 0.9168, 0.9375, 0.9544, 0.968, 0.9786, 0.9865, 0.9922, 0.996, 0.9983, 0.9995, 0.9999, 1); }
+[data-8b-live] #contact .ct-grid { view-timeline: --contact-t1 block; view-timeline-inset: 0; }
+[data-8b-live] #contact .ct-call, [data-8b-live] #contact .ct-write, [data-8b-live] #contact .ct-visit, [data-8b-live] #contact .ct-hours { animation-timeline: --contact-t1; animation-timing-function: cubic-bezier(0.3333, 1, 0.6667, 1); animation-fill-mode: both; transform: none; }
+[data-8b-live] #contact .ct-visit { animation-name: contact-div-ct-side-translate-3; }
+[data-8b-live] #contact .ct-hours { animation-name: contact-div-ct-side-translate-4; }
+@keyframes contact-div-ct-side-translate-d { 0% { translate: -80% 0px; } 100% { translate: 0px 0px; } }
+@keyframes contact-div-ct-side-translate-m { 0% { translate: -40% 0px; } 100% { translate: 0px 0px; } }
+@keyframes contact-div-ct-side-translate-2-d { 0% { translate: 80% 0px; } 100% { translate: 0px 0px; } }
+@keyframes contact-div-ct-side-translate-2-m { 0% { translate: 40% 0px; } 100% { translate: 0px 0px; } }
+@keyframes contact-div-ct-side-translate-3 { 0% { translate: 0px -60%; } 100% { translate: 0px 0px; } }
+@keyframes contact-div-ct-side-translate-4 { 0% { translate: 0px 60%; } 100% { translate: 0px 0px; } }
+@keyframes contact-p-m-text-3-rotate { 0% { rotate: 0deg; } 100% { rotate: -90deg; } }
+@keyframes contact-p-m-text-3-rotate-2 { 0% { rotate: 0deg; } 100% { rotate: 90deg; } }
+@media (min-width: 901px) {
+  [data-8b-live] #contact .ct-call { animation-name: contact-div-ct-side-translate-d; animation-range: cover 8vh cover 78vh; }
+  [data-8b-live] #contact .ct-write { animation-name: contact-div-ct-side-translate-2-d; animation-range: cover 8vh cover 78vh; }
+  [data-8b-live] #contact .ct-visit, [data-8b-live] #contact .ct-hours { animation-range: cover 8vh cover 78vh; }
+  [data-8b-live] #contact .ct-call > .m-text-3, [data-8b-live] #contact .ct-write > .m-text-3 { animation-timeline: --contact-t1; animation-range: cover 32.5vh cover 74.5vh; animation-timing-function: var(--ease-power2-inout); animation-fill-mode: both; transform: none; }
+  [data-8b-live] #contact .ct-call > .m-text-3 { animation-name: contact-p-m-text-3-rotate; }
+  [data-8b-live] #contact .ct-write > .m-text-3 { animation-name: contact-p-m-text-3-rotate-2; }
+}
+@media (max-width: 900px) {
+  [data-8b-live] #contact .ct-call { animation-name: contact-div-ct-side-translate-m; animation-range: cover 8vh cover 60vh; }
+  [data-8b-live] #contact .ct-write { animation-name: contact-div-ct-side-translate-2-m; animation-range: cover 8vh cover 60vh; }
+  [data-8b-live] #contact .ct-visit, [data-8b-live] #contact .ct-hours { animation-range: cover 8vh cover 60vh; }
+}
+}
+</style>
+<script data-8b-part="motion-gate">
+if (matchMedia('(prefers-reduced-motion: no-preference)').matches && CSS.supports('animation-timeline: view()')) document.documentElement.setAttribute('data-8b-live', '');
+</script>
 </head>
 <body>
 <!-- navigation: black top bar: wordmark, five section links, Book a stay button; hides on scroll down; phone menu overlay of colour panels -->
@@ -590,7 +781,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     <a class="m-btn-2 nav__book" href="#contact"><span class="m-btn-2__label">Book a stay</span></a>
     <button class="m-iconbtn nav__toggle" type="button" aria-expanded="false" aria-controls="menu"><span class="m-iconbtn__icon" aria-hidden="true"></span><span class="u-sr">Open menu</span></button>
   </div>
-  <div class="nav__menu" id="menu" data-lenis-prevent hidden>
+  <div class="nav__menu" id="menu" hidden>
     <button class="m-iconbtn nav__close" type="button"><span class="m-iconbtn__icon" aria-hidden="true"></span><span class="u-sr">Close menu</span></button>
     <nav aria-label="Menu">
       <ul>
@@ -617,7 +808,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       </div>
       <div class="op-cell op-b">
         <div class="op-panel m-surface-5">
-          <div class="m-photo op-photo"><img srcset="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=360&amp;q=60 360w, https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60 530w" sizes="(max-width: 767px) 120px, 41vw" style="background:#734040" src="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60" alt="A black cat in profile against a warm terracotta wall" width="1600" height="2000" fetchpriority="high"></div>
+          <div class="m-photo op-photo"><img srcset="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=360&amp;q=60 360w, https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60 530w" sizes="(max-width: 767px) 120px, 41vw" src="https://images.unsplash.com/photo-1601850844626-3d1650562a43?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8YmxhY2slMjBjYXQlMjBsb29raW5nJTIwdXB8ZW58MXwxfHx8MTc5MTI5ODkzMHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=530&amp;q=60" alt="A black cat in profile against a warm terracotta wall" width="1600" height="2000" fetchpriority="high"></div>
           <p class="m-text-4 op-ledge">Room 4 · Olive, staying nine nights</p>
         </div>
       </div>
@@ -655,19 +846,19 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       <p class="m-text-7">Every room is built around its window: a ledge forty centimetres deep, a radiator shelf for winter and a view of the linden in the courtyard. The lamps go on at seven.</p>
       <a class="m-link" href="#rooms">Walk through the rooms</a>
     </div>
-    <ol class="op-house" aria-label="The twelve rooms">
-      <li class="op-win op-win--plain m-surface"><span class="m-text-4 op-win__label">1 · Ledge</span></li>
-      <li class="op-win m-surface-4"><div class="m-photo op-win__photo"><img style="background:#a68c8c" src="https://images.unsplash.com/photo-1680428789174-a09a0c8a45a5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A cat on the outside sill of a window among potted plants" width="1600" height="2843" loading="lazy"></div><span class="m-text-4 op-win__label">2 · Pip</span></li>
-      <li class="op-win op-win--plain m-surface-3"><span class="m-text-4 op-win__label">3 · Tower</span></li>
-      <li class="op-win op-win--plain m-surface-8"><span class="m-text-4 op-win__label">4 · Ledge</span></li>
-      <li class="op-win op-win--plain m-surface-6"><span class="m-text-4 op-win__label">5 · Burrow</span></li>
-      <li class="op-win m-surface-7"><div class="m-photo op-win__photo"><img style="background:#595959" src="https://images.unsplash.com/photo-1661258580619-8b6d93b02083?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A white cat looking out between open shutters" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">6 · Moss</span></li>
-      <li class="op-win m-surface-5"><div class="m-photo op-win__photo"><img style="background:#595959" src="https://images.unsplash.com/photo-1707084889603-c84a0ae3eb5e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A tabby cat sitting upright on a window sill" width="1600" height="1876" loading="lazy"></div><span class="m-text-4 op-win__label">7 · Bruno</span></li>
-      <li class="op-win op-win--plain m-surface-2"><span class="m-text-4 op-win__label">8 · Tower</span></li>
-      <li class="op-win op-win--plain m-surface-7"><span class="m-text-4 op-win__label">9 · Ledge</span></li>
-      <li class="op-win m-surface"><div class="m-photo op-win__photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1664731638140-8d58cd3d8c23?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A ginger cat in a lit window beside a lamp" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">10 · Mochi</span></li>
-      <li class="op-win op-win--plain m-surface-5"><span class="m-text-4 op-win__label">11 · Burrow</span></li>
-      <li class="op-win m-surface-8"><div class="m-photo op-win__photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1780062611008-5c9e5029293b?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A white and grey cat sitting on a window ledge" width="1600" height="2133" loading="lazy"></div><span class="m-text-4 op-win__label">12 · Saar</span></li>
+    <ol class="op-house" aria-label="The twelve rooms" data-8b-items=":scope > li" data-8b-fixed="12">
+      <li class="op-win op-win--plain m-surface" style="--opening-li-op-win-clippath-2-from: 100%"><span class="m-text-4 op-win__label">1 · Ledge</span></li>
+      <li class="op-win m-surface-4" style="--opening-li-op-win-clippath-2-from: 99.9993%"><div class="m-photo op-win__photo"><img src="https://images.unsplash.com/photo-1680428789174-a09a0c8a45a5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A cat on the outside sill of a window among potted plants" width="1600" height="2843" loading="lazy"></div><span class="m-text-4 op-win__label">2 · Pip</span></li>
+      <li class="op-win op-win--plain m-surface-3" style="--opening-li-op-win-clippath-2-from: 99.9993%"><span class="m-text-4 op-win__label">3 · Tower</span></li>
+      <li class="op-win op-win--plain m-surface-8" style="--opening-li-op-win-clippath-2-from: 99.9997%"><span class="m-text-4 op-win__label">4 · Ledge</span></li>
+      <li class="op-win op-win--plain m-surface-6" style="--opening-li-op-win-clippath-2-from: 99.9997%"><span class="m-text-4 op-win__label">5 · Burrow</span></li>
+      <li class="op-win m-surface-7" style="--opening-li-op-win-clippath-2-from: 99.9997%"><div class="m-photo op-win__photo"><img src="https://images.unsplash.com/photo-1661258580619-8b6d93b02083?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A white cat looking out between open shutters" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">6 · Moss</span></li>
+      <li class="op-win m-surface-5" style="--opening-li-op-win-clippath-2-from: 100%"><div class="m-photo op-win__photo"><img src="https://images.unsplash.com/photo-1707084889603-c84a0ae3eb5e?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A tabby cat sitting upright on a window sill" width="1600" height="1876" loading="lazy"></div><span class="m-text-4 op-win__label">7 · Bruno</span></li>
+      <li class="op-win op-win--plain m-surface-2" style="--opening-li-op-win-clippath-2-from: 100%"><span class="m-text-4 op-win__label">8 · Tower</span></li>
+      <li class="op-win op-win--plain m-surface-7" style="--opening-li-op-win-clippath-2-from: 100%"><span class="m-text-4 op-win__label">9 · Ledge</span></li>
+      <li class="op-win m-surface" style="--opening-li-op-win-clippath-2-from: 100%"><div class="m-photo op-win__photo"><img src="https://images.unsplash.com/photo-1664731638140-8d58cd3d8c23?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=280&amp;q=60" alt="A ginger cat in a lit window beside a lamp" width="1600" height="1067" loading="lazy"></div><span class="m-text-4 op-win__label">10 · Mochi</span></li>
+      <li class="op-win op-win--plain m-surface-5" style="--opening-li-op-win-clippath-2-from: 100%"><span class="m-text-4 op-win__label">11 · Burrow</span></li>
+      <li class="op-win m-surface-8" style="--opening-li-op-win-clippath-2-from: 100%"><div class="m-photo op-win__photo"><img src="https://images.unsplash.com/photo-1780062611008-5c9e5029293b?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8Y2F0JTIwd2luZG93JTIwc2lsbHxlbnwxfDF8fHwxNzkxMjk4OTMxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60" alt="A white and grey cat sitting on a window ledge" width="1600" height="2133" loading="lazy"></div><span class="m-text-4 op-win__label">12 · Saar</span></li>
     </ol>
   </div>
 </section>
@@ -676,11 +867,11 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <section id="rooms" data-8b-section="rooms" aria-labelledby="rooms-title">
   <div class="rm-grid">
     <div class="rm-head m-surface-6">
-      <h2 id="rooms-title" class="m-text-3" data-8b-motion="rise">Three shapes of room</h2>
+      <h2 id="rooms-title" class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Three shapes of room</h2>
       <p class="m-text">Cats choose rooms the way they choose boxes. Tell us whether yours watches, climbs or hides, and we give it the room that fits.</p>
     </div>
     <article class="rm-room rm-ledge m-surface-7">
-      <div class="m-photo"><img style="background:#260c0c" src="https://images.unsplash.com/photo-1681741179058-e8a7a7cf77a9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger cat on a window ledge looking out at the city" width="1600" height="1067" loading="lazy"></div>
+      <div class="m-photo"><img src="https://images.unsplash.com/photo-1681741179058-e8a7a7cf77a9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger cat on a window ledge looking out at the city" width="1600" height="1067" loading="lazy"></div>
       <div class="rm-body">
         <h3 class="m-text-6 rm-name">The Ledge</h3>
         <p class="m-text">For watchers. A two-metre ledge at sitting height, a hammock under the sill and the best view of the bird feeder.</p>
@@ -688,7 +879,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       </div>
     </article>
     <article class="rm-room rm-tower m-surface-3">
-      <div class="m-photo"><img style="background:#f3d9c0" src="https://images.unsplash.com/photo-1687417960535-46e2faed40c1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwb24lMjBzaGVsZnxlbnwxfDF8fHwxNzkxMjk4OTMzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A cat sitting on a shelf in a tall wooden shelving unit" width="1600" height="2844" loading="lazy"></div>
+      <div class="m-photo"><img src="https://images.unsplash.com/photo-1687417960535-46e2faed40c1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Y2F0JTIwb24lMjBzaGVsZnxlbnwxfDF8fHwxNzkxMjk4OTMzfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A cat sitting on a shelf in a tall wooden shelving unit" width="1600" height="2844" loading="lazy"></div>
       <div class="rm-body">
         <h3 class="m-text-6 rm-name" style="--len:9">The Tower</h3>
         <p class="m-text">For climbers. Five shelves up to the ceiling, a lookout box at the top and a rope to get there.</p>
@@ -696,7 +887,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       </div>
     </article>
     <article class="rm-room rm-burrow m-surface-2">
-      <div class="m-photo"><img style="background:#402626" src="https://images.unsplash.com/photo-1663022374632-385813867095?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwaW4lMjBib3h8ZW58MXwwfHx8MTc5MTI5ODkzNHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A kitten peeking over the edge of a box" width="1600" height="1067" loading="lazy"></div>
+      <div class="m-photo"><img src="https://images.unsplash.com/photo-1663022374632-385813867095?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwaW4lMjBib3h8ZW58MXwwfHx8MTc5MTI5ODkzNHww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A kitten peeking over the edge of a box" width="1600" height="1067" loading="lazy"></div>
       <div class="rm-body">
         <h3 class="m-text-6 rm-name">The Burrow</h3>
         <p class="m-text">For shy cats and first nights. Low ceiling, a covered bed, a window at floor level and dimmed light.</p>
@@ -719,13 +910,13 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <section id="letters" data-8b-section="letters" aria-labelledby="letters-title">
   <div class="lt-grid">
     <div class="lt-intro">
-      <h2 id="letters-title" class="m-text-3" data-8b-motion="rise">A letter every evening</h2>
+      <h2 id="letters-title" class="m-text-3" data-8b-motion="rise" data-8b-split="lines">A letter every evening</h2>
       <p class="m-text-7">At half past six your cat's sitter writes to you: what was eaten, where the nap happened, one photo. No app to install, just an email you will want to keep.</p>
       <svg class="m-curl" viewBox="0 0 200 300" aria-hidden="true" data-8b-motion="curl"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
     </div>
-    <div class="lt-list">
+    <div class="lt-list" data-8b-items=":scope > article">
       <article class="lt-letter m-surface-4">
-        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#262626" src="https://images.unsplash.com/photo-1714965577457-af3fedbcd8b8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTV8fGNhdCUyMHN1bmJhdGhpbmd8ZW58MXwxfHx8MTc5MTI5ODk0MXww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat dozing in the sun" width="1600" height="2133" loading="lazy"></div>
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1714965577457-af3fedbcd8b8?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTV8fGNhdCUyMHN1bmJhdGhpbmd8ZW58MXwxfHx8MTc5MTI5ODk0MXww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat dozing in the sun" width="1600" height="2133" loading="lazy"></div>
         <div class="lt-body">
           <p class="m-text-4">Tuesday, 18:40 · Room 4</p>
           <p class="m-text-5">Dear Ana, Olive finished her breakfast and most of the afternoon sun. She has claimed the second shelf and will not discuss it. Purred at the sparrows, quietly.</p>
@@ -733,7 +924,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
         </div>
       </article>
       <article class="lt-letter m-surface-8">
-        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#c08c0c" src="https://images.unsplash.com/photo-1613064504039-bb89104af499?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A Siamese cat asleep across a yellow cushion" width="1600" height="2400" loading="lazy"></div>
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1613064504039-bb89104af499?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A Siamese cat asleep across a yellow cushion" width="1600" height="2400" loading="lazy"></div>
         <div class="lt-body">
           <p class="m-text-4">Wednesday, 18:35 · Room 10</p>
           <p class="m-text-5">Mochi spent an hour on the ledge reviewing the sparrows. He has opinions. Asleep against the radiator from nine.</p>
@@ -741,7 +932,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
         </div>
       </article>
       <article class="lt-letter m-surface-7">
-        <div class="m-photo lt-photo" data-8b-motion="peek"><img style="background:#c0d9d9" src="https://images.unsplash.com/photo-1649365231622-d774ce10a140?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc3VuYmF0aGluZ3xlbnwxfDF8fHwxNzkxMjk4OTQxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger and white cat resting on a stone wall at sunset" width="1600" height="2400" loading="lazy"></div>
+        <div class="m-photo lt-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1649365231622-d774ce10a140?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwc3VuYmF0aGluZ3xlbnwxfDF8fHwxNzkxMjk4OTQxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger and white cat resting on a stone wall at sunset" width="1600" height="2400" loading="lazy"></div>
         <div class="lt-body">
           <p class="m-text-4">Thursday, 18:50 · Room 7</p>
           <p class="m-text-5">Bruno let me brush him today. Three whole minutes. We are both very proud of ourselves.</p>
@@ -761,42 +952,42 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     </div>
     <div class="dy-sky" aria-hidden="true"><div class="dy-disc"></div></div>
     <div class="dy-rail">
-      <ol class="dy-track">
+      <ol class="dy-track" data-8b-items=":scope > li">
         <li class="dy-hour m-surface-5">
           <p class="dy-time"><time datetime="07:00">07:00</time></p>
           <h3 class="m-text-6">Breakfast</h3>
           <p class="m-text">Weighed portions from your own bag, noted in the evening letter.</p>
-          <div class="m-photo dy-photo"><img style="background:#260c0c" src="https://images.unsplash.com/photo-1764576504536-dbdfa4cb1d9a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwZWF0aW5nJTIwYm93bHxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A ginger cat eating dry food from a bowl" width="1600" height="2400" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1764576504536-dbdfa4cb1d9a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwZWF0aW5nJTIwYm93bHxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="A ginger cat eating dry food from a bowl" width="1600" height="2400" loading="lazy"></div>
         </li>
         <li class="dy-hour m-surface-3">
           <p class="dy-time"><time datetime="09:30">09:30</time></p>
           <h3 class="m-text-6">Window watch</h3>
           <p class="m-text">Blinds up, ledges warm. The sparrows arrive on schedule.</p>
-          <div class="m-photo dy-photo"><img style="background:#d9d9d9" src="https://images.unsplash.com/photo-1599798361719-5149b29830c5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=670&amp;q=60" alt="A tortoiseshell cat on a window sill looking out" width="1600" height="1067" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1599798361719-5149b29830c5?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NHx8Y2F0JTIwbG9va2luZyUyMG91dCUyMHdpbmRvd3xlbnwxfDB8fHwxNzkxMjk4OTMyfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=860&amp;q=60" alt="A tortoiseshell cat on a window sill looking out" width="1600" height="1067" loading="lazy"></div>
         </li>
         <li class="dy-hour m-surface">
           <p class="dy-time"><time datetime="12:00">12:00</time></p>
           <h3 class="m-text-6">Play hour</h3>
           <p class="m-text">Feather wands and paper bags, one sitter per room, door closed.</p>
-          <div class="m-photo dy-photo"><img style="background:#c0a68c" src="https://images.unsplash.com/photo-1708979346051-e809d2059b32?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwcGxheWluZyUyMHRveXxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A cat crouching to pounce on a striped toy" width="1600" height="2400" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1708979346051-e809d2059b32?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8NXx8Y2F0JTIwcGxheWluZyUyMHRveXxlbnwxfDF8fHwxNzkxMjk4OTM1fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="A cat crouching to pounce on a striped toy" width="1600" height="2400" loading="lazy"></div>
         </li>
         <li class="dy-hour m-surface-7">
           <p class="dy-time"><time datetime="14:00">14:00</time></p>
           <h3 class="m-text-6">Long nap</h3>
           <p class="m-text">The house goes quiet. Nobody vacuums, nobody knocks.</p>
-          <div class="m-photo dy-photo"><img style="background:#a6a6a6" src="https://images.unsplash.com/photo-1697716759638-7db291129c7d?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A tabby cat asleep on a red chair cushion" width="1600" height="2133" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1697716759638-7db291129c7d?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Mnx8Y2F0JTIwc2xlZXBpbmd8ZW58MXwxfHx8MTc5MTI5ODkzN3ww&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="A tabby cat asleep on a red chair cushion" width="1600" height="2133" loading="lazy"></div>
         </li>
         <li class="dy-hour m-surface-6">
           <p class="dy-time"><time datetime="17:30">17:30</time></p>
           <h3 class="m-text-6">Brushing</h3>
           <p class="m-text">Ten slow minutes, or one, depending on the cat.</p>
-          <div class="m-photo dy-photo"><img style="background:#8cc0c0" src="https://images.unsplash.com/photo-1715962148526-560cf2da2aa9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwYmVpbmclMjBicnVzaGVkfGVufDF8MXx8fDE3OTEyOTg5MzZ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A hand stroking a long-haired cat's head" width="1600" height="2400" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1715962148526-560cf2da2aa9?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8N3x8Y2F0JTIwYmVpbmclMjBicnVzaGVkfGVufDF8MXx8fDE3OTEyOTg5MzZ8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="A hand stroking a long-haired cat's head" width="1600" height="2400" loading="lazy"></div>
         </li>
         <li class="dy-hour m-surface-2">
           <p class="dy-time"><time datetime="21:00">21:00</time></p>
           <h3 class="m-text-6">Lights low</h3>
           <p class="m-text">The night sitter takes the sofa downstairs. Every door checked twice.</p>
-          <div class="m-photo dy-photo"><img style="background:#262626" src="https://images.unsplash.com/photo-1759455024831-ef131a04c6fb?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbmlnaHQlMjBkYXJrfGVufDF8MXx8fDE3OTEyOTg5Mzh8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat's yellow eyes in the dark" width="1600" height="2000" loading="lazy"></div>
+          <div class="m-photo dy-photo"><img src="https://images.unsplash.com/photo-1759455024831-ef131a04c6fb?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8M3x8Y2F0JTIwbmlnaHQlMjBkYXJrfGVufDF8MXx8fDE3OTEyOTg5Mzh8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="A black cat's yellow eyes in the dark" width="1600" height="2000" loading="lazy"></div>
         </li>
       </ol>
     </div>
@@ -806,13 +997,13 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <!-- sitters: team of four: portraits behind coloured ledges at stepped heights, name and role on each ledge -->
 <section id="sitters" data-8b-section="sitters" aria-labelledby="sitters-title">
   <div class="st-head">
-    <h2 id="sitters-title" class="m-text-3" data-8b-motion="rise">Four people, always in the house</h2>
+    <h2 id="sitters-title" class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Four people, always in the house</h2>
     <p class="m-text">No rota app, no agency staff. Each sitter has their own rooms and stays with your cat for the whole booking.</p>
   </div>
-  <ul class="st-list">
+  <ul class="st-list" data-8b-items=":scope > li">
     <li class="st-person">
       <div class="m-surface-7">
-        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#0c2626" src="https://images.unsplash.com/photo-1776715823253-d0ea2eb4b319?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8d29tYW4lMjBob2xkaW5nJTIwY2F0fGVufDF8MXx8fDE3OTEyOTg5Mzl8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Noor in a grey coat with a calico cat on her lap" width="1600" height="2492" loading="lazy"></div>
+        <div class="m-photo st-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1776715823253-d0ea2eb4b319?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OHx8d29tYW4lMjBob2xkaW5nJTIwY2F0fGVufDF8MXx8fDE3OTEyOTg5Mzl8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Noor in a grey coat with a calico cat on her lap" width="1600" height="2492" loading="lazy"></div>
         <div class="st-ledge">
           <h3 class="m-text-6">Noor</h3>
           <p class="m-text">Night shift. Reads aloud to the nervous ones.</p>
@@ -821,7 +1012,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     </li>
     <li class="st-person">
       <div class="m-surface">
-        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#59260c" src="https://images.unsplash.com/photo-1751402985454-b0d819ad972c?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Jasper holding a small kitten to his chin" width="1600" height="2844" loading="lazy"></div>
+        <div class="m-photo st-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1751402985454-b0d819ad972c?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Jasper holding a small kitten to his chin" width="1600" height="2844" loading="lazy"></div>
         <div class="st-ledge">
           <h3 class="m-text-6">Jasper</h3>
           <p class="m-text">Mornings and medicine. Gives a pill in four seconds.</p>
@@ -830,7 +1021,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     </li>
     <li class="st-person">
       <div class="m-surface-4">
-        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#a60c0c" src="https://images.unsplash.com/photo-1772723246509-63d23da29f6a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTB8fHdvbWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTM5fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Ilse holding a tabby cat against a red wall" width="1600" height="2399" loading="lazy"></div>
+        <div class="m-photo st-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1772723246509-63d23da29f6a?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MTB8fHdvbWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTM5fDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Ilse holding a tabby cat against a red wall" width="1600" height="2399" loading="lazy"></div>
         <div class="st-ledge">
           <h3 class="m-text-6">Ilse</h3>
           <p class="m-text">Grooming and letters. Writes most of them.</p>
@@ -839,7 +1030,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     </li>
     <li class="st-person">
       <div class="m-surface-3">
-        <div class="m-photo st-photo" data-8b-motion="peek"><img style="background:#594026" src="https://images.unsplash.com/photo-1774513149166-5b10650e45ba?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Daan holding a black and white cat by a window" width="1600" height="2134" loading="lazy"></div>
+        <div class="m-photo st-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1774513149166-5b10650e45ba?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8OXx8bWFuJTIwaG9sZGluZyUyMGNhdHxlbnwxfDF8fHwxNzkxMjk4OTQwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=310&amp;q=60" alt="Daan holding a black and white cat by a window" width="1600" height="2134" loading="lazy"></div>
         <div class="st-ledge">
           <h3 class="m-text-6">Daan</h3>
           <p class="m-text">Owner. Built every shelf in the house.</p>
@@ -853,12 +1044,12 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <section id="courtyard" data-8b-section="courtyard" aria-labelledby="courtyard-title">
   <div class="cy-grid">
     <div class="cy-window">
-      <div class="cy-pane" style="--c:0;--r:0;--mc:0;--mr:0"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="The courtyard: two brick wings, a lawn and trees" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
-      <div class="cy-pane" style="--c:1;--r:0;--mc:1;--mr:0" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
-      <div class="cy-pane" style="--c:2;--r:0;--mc:0;--mr:1" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
-      <div class="cy-pane" style="--c:0;--r:1;--mc:1;--mr:1" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
-      <div class="cy-pane" style="--c:1;--r:1;--mc:0;--mr:2" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
-      <div class="cy-pane" style="--c:2;--r:1;--mc:1;--mr:2" aria-hidden="true"><img style="background:#26260c" src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:0;--r:0;--mc:0;--mr:0"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="The courtyard: two brick wings, a lawn and trees" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:1;--r:0;--mc:1;--mr:0" aria-hidden="true"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:2;--r:0;--mc:0;--mr:1" aria-hidden="true"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:0;--r:1;--mc:1;--mr:1" aria-hidden="true"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:1;--r:1;--mc:0;--mr:2" aria-hidden="true"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
+      <div class="cy-pane" style="--c:2;--r:1;--mc:1;--mr:2" aria-hidden="true"><img src="https://images.unsplash.com/photo-1767371051716-c060c61f73f3?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBjb3VydHlhcmQlMjBicmljayUyMGhvdXNlc3xlbnwxfDB8fHwxNzkxMjk5MDAxfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=1190&amp;q=60" alt="" width="1600" height="1065" loading="lazy"><span class="cy-tint"></span></div>
     </div>
     <div class="cy-text m-surface-7">
       <h2 id="courtyard-title" class="m-text-3">Every window faces the courtyard</h2>
@@ -870,7 +1061,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       </ul>
     </div>
     <figure class="cy-birds m-surface-8">
-      <div class="m-photo"><img style="background:#40400c" src="https://images.unsplash.com/photo-1733516858066-324f793bec01?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YmlyZCUyMGZlZWRlciUyMGdhcmRlbnxlbnwxfDB8fHwxNzkxMjk5MDAwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="Two sparrows on a bird feeder" width="1600" height="1067" loading="lazy"></div>
+      <div class="m-photo"><img src="https://images.unsplash.com/photo-1733516858066-324f793bec01?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8MXx8YmlyZCUyMGZlZWRlciUyMGdhcmRlbnxlbnwxfDB8fHwxNzkxMjk5MDAwfDA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="Two sparrows on a bird feeder" width="1600" height="1067" loading="lazy"></div>
       <figcaption class="m-text-4"><p>The sparrows arrive at six. The ledges fill up at five past.</p></figcaption>
     </figure>
   </div>
@@ -880,7 +1071,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <section id="visit" data-8b-section="visit" aria-labelledby="visit-title">
   <div class="vs-grid">
     <div class="vs-head">
-      <h2 id="visit-title" class="m-text-3" data-8b-motion="rise">Your first visit</h2>
+      <h2 id="visit-title" class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Your first visit</h2>
       <p class="m-text-7">Most cats settle on the second day. These four steps get them there sooner.</p>
       <svg class="m-curl vs-curl" viewBox="0 0 200 300" aria-hidden="true" data-8b-motion="curl"><path pathLength="1" d="M100 296 C58 236 38 158 90 110 C140 64 200 92 190 140 C181 184 121 186 115 146 C110 116 150 104 158 130"/></svg>
     </div>
@@ -900,7 +1091,7 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
       <p class="m-text">Lights low, a sitter nearby and no new faces until morning. The first night costs nothing extra.</p>
     </article>
     <article class="vs-step m-surface-7">
-      <div class="m-photo vs-photo" data-8b-motion="peek"><img style="background:#a6a68c" src="https://images.unsplash.com/photo-1608228279688-495f6a3861a1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8YmxhY2slMjBjYXQlMjBwZWVraW5nfGVufDF8MXx8fDE3OTEyOTg5MzB8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat peeking out from behind a wooden post" width="1600" height="2133" loading="lazy"></div>
+      <div class="m-photo vs-photo" data-8b-motion="peek"><img src="https://images.unsplash.com/photo-1608228279688-495f6a3861a1?ixid=M3w0Mzc5fDB8MXxzZWFyY2h8Nnx8YmxhY2slMjBjYXQlMjBwZWVraW5nfGVufDF8MXx8fDE3OTEyOTg5MzB8MA&amp;ixlib=rb-4.1.0&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=60" alt="A black cat peeking out from behind a wooden post" width="1600" height="2133" loading="lazy"></div>
       <p class="vs-num">4</p>
       <h3 class="m-text-6">Letters start</h3>
       <p class="m-text">The first evening letter arrives the same day, usually with a cat peeking out from somewhere.</p>
@@ -914,20 +1105,20 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
     <h2 id="quiet-title" class="m-text-3">A quiet house, by rule</h2>
     <p class="m-text">Stress is what makes cats ill on holiday. So the house is run for silence, distance and fresh air, and four rules are never bent.</p>
   </div>
-  <ul class="qt-rules">
-    <li class="qt-rule m-surface-7">
+  <ul class="qt-rules" data-8b-items=":scope > li" data-8b-fixed="4">
+    <li class="qt-rule m-surface-7" style="--quiet-li-qt-rule-rotate-from: -7deg; --quiet-li-qt-rule-translate-from: 34px; --quiet-li-qt-rule-translate-from-2: -50px; --quiet-li-qt-rule-backgroundcolor-to: 128; --quiet-li-qt-rule-backgroundcolor-to-2: 168; --quiet-li-qt-rule-backgroundcolor-to-3: 155; --quiet-li-qt-rule-rotate-from-m: -3.15deg; --quiet-li-qt-rule-translate-from-m: 15.3px; --quiet-li-qt-rule-translate-from-2-m: -22.5px">
       <p class="m-text-8 qt-word">No dogs.</p>
       <p class="m-text">Not as guests, not as staff, not visiting. The house never smells of dog.</p>
     </li>
-    <li class="qt-rule m-surface-4">
+    <li class="qt-rule m-surface-4" style="--quiet-li-qt-rule-rotate-from: 6deg; --quiet-li-qt-rule-translate-from: -26px; --quiet-li-qt-rule-translate-from-2: 40px; --quiet-li-qt-rule-backgroundcolor-to: 188; --quiet-li-qt-rule-backgroundcolor-to-2: 165; --quiet-li-qt-rule-backgroundcolor-to-3: 157; --quiet-li-qt-rule-rotate-from-m: 2.7deg; --quiet-li-qt-rule-translate-from-m: -11.7px; --quiet-li-qt-rule-translate-from-2-m: 18px">
       <p class="m-text-8 qt-word">One cat.</p>
       <p class="m-text">One cat per room. Siblings share only if they share at home.</p>
     </li>
-    <li class="qt-rule m-surface-5">
+    <li class="qt-rule m-surface-5" style="--quiet-li-qt-rule-rotate-from: -5deg; --quiet-li-qt-rule-translate-from: 30px; --quiet-li-qt-rule-translate-from-2: -26px; --quiet-li-qt-rule-backgroundcolor-to: 169; --quiet-li-qt-rule-backgroundcolor-to-2: 125; --quiet-li-qt-rule-backgroundcolor-to-3: 156; --quiet-li-qt-rule-rotate-from-m: -2.25deg; --quiet-li-qt-rule-translate-from-m: 13.5px; --quiet-li-qt-rule-translate-from-2-m: -11.7px">
       <p class="m-text-8 qt-word">Own air.</p>
       <p class="m-text">Every room has its own vent, so nothing passes from one room to the next.</p>
     </li>
-    <li class="qt-rule m-surface-8">
+    <li class="qt-rule m-surface-8" style="--quiet-li-qt-rule-rotate-from: 8deg; --quiet-li-qt-rule-translate-from: -36px; --quiet-li-qt-rule-translate-from-2: 56px; --quiet-li-qt-rule-backgroundcolor-to: 227; --quiet-li-qt-rule-backgroundcolor-to-2: 184; --quiet-li-qt-rule-backgroundcolor-to-3: 103; --quiet-li-qt-rule-rotate-from-m: 3.6deg; --quiet-li-qt-rule-translate-from-m: -16.2px; --quiet-li-qt-rule-translate-from-2-m: 25.2px">
       <p class="m-text-8 qt-word">Vet close.</p>
       <p class="m-text">A cat clinic two streets away, on call day and night for every guest.</p>
     </li>
@@ -938,10 +1129,10 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
 <section id="faq" data-8b-section="faq" aria-labelledby="faq-title">
   <div class="fq-grid">
     <div class="fq-head m-surface-3">
-      <h2 id="faq-title" class="m-text-3" data-8b-motion="rise">Questions owners ask</h2>
+      <h2 id="faq-title" class="m-text-3" data-8b-motion="rise" data-8b-split="lines">Questions owners ask</h2>
       <p class="m-text">Something else? Call the house, a sitter always picks up: <a data-8b-placeholder="phone" class="m-link" href="tel:+31300000000">+31 30 000 0000</a></p>
     </div>
-    <div class="fq-list">
+    <div class="fq-list" data-8b-items=":scope > details">
       <details class="fq-item m-surface-4">
         <summary class="m-text-6">Which vaccinations are needed?</summary>
         <p class="m-text fq-a">Cat flu and feline panleukopenia, given at least two weeks before arrival. Bring the passport on the first day; we copy it and give it back.</p>
@@ -1066,13 +1257,13 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
   const open = () => {
     menu.hidden = false;
     toggle.setAttribute('aria-expanded', 'true');
-    window.lenis?.stop();
+    window.motionKit?.wheel?.stop();
     menu.querySelector('a')?.focus();
   };
   const shut = (refocus) => {
     menu.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
-    window.lenis?.start();
+    window.motionKit?.wheel?.start();
     if (refocus) toggle.focus();
   };
   toggle.addEventListener('click', open);
@@ -1103,285 +1294,211 @@ textarea.m-field__input { min-height: 104px; resize: vertical; }
   });
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.27/dist/lenis.min.js"></script>
-<script data-8b-part="motion-queue">
+<script data-8b-part="motion-kit">
 (() => {
-  'use strict';
-  const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
-  const parsed = document.readyState === 'loading' ? new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true })) : Promise.resolve();
-  const ready = () => Promise.all([fonts, parsed]).then(() => firsts);
-  const nextTask = () => window.scheduler?.yield?.() ?? new Promise(resolve => setTimeout(resolve));
-  const refresh = () => {
-    if (typeof window.refreshScroll === 'function') return window.refreshScroll();
-    window.ScrollTrigger?.sort(); window.ScrollTrigger?.refresh();
-  };
-  const run = (setup, name) => {
-    for (const trigger of window.ScrollTrigger?.getAll() || []) if (!trigger.end && window.ScrollTrigger.getAll().includes(trigger)) trigger.refresh(0, 1);
-    const context = window.gsap.context(() => {});
-    const log = new MutationObserver(() => {});
-    log.observe(document.documentElement, { attributes: true, attributeOldValue: true, subtree: true });
-    let failure = null, records;
-    try { context.add(() => { try { setup(); } catch (error) { failure = error; } }); }
-    finally { records = log.takeRecords(); log.disconnect(); }
-    if (!failure) return true;
-    try { context.revert(); } catch (error) { console.error(name, 'revert failed', error); }
-    for (const { target, attributeName, oldValue } of records.reverse()) {
-      const now = target.getAttribute(attributeName);
-      if (oldValue == null) { if (now != null) target.removeAttribute(attributeName); }
-      else if (now !== oldValue) target.setAttribute(attributeName, oldValue);
-    }
-    console.error(name, failure);
-    return false;
-  };
-  let firsts = Promise.resolve(), tail = null, pending = 0, lazy = null, building = 0, firstCount = 0;
-  window.motionReady = ready();
-  parsed.then(() => { if (firstCount && !tail) firsts.then(refresh); });
-  window.queueMotion = (setup, { first = false, near, id } = {}) => {
-    if (!window.gsap || typeof setup !== 'function') return;
-    const name = id || document.currentScript?.getAttribute('data-8b-part') || 'motion';
-    if (near instanceof Element && window.IntersectionObserver) {
-      const watch = new IntersectionObserver(entries => {
-        if (!entries.some(entry => entry.isIntersecting)) return;
-        watch.disconnect();
-        building++;
-        lazy = (lazy || ready()).then(nextTask).then(() => run(setup, name)).finally(() => { if (!--building) refresh(); });
-      }, { rootMargin: '100% 0px' });
-      watch.observe(near);
-      return;
-    }
-    if (first) { firstCount++; firsts = firsts.then(() => fonts).then(() => { if (!run(setup, name)) refresh(); }); }
-    else {
-      pending++;
-      tail = (tail || ready()).then(nextTask).then(() => run(setup, name))
-        .finally(() => { if (!--pending) refresh(); });
-    }
-    window.motionReady = Promise.all([firsts, tail]);
-  };
+const live = document.documentElement.hasAttribute('data-8b-live');
+const measures = new Set();
+let queued = false;
+const run = fn => { try { fn(); } catch (error) { console.error('[motion-kit] measure failed', error); } };
+const remeasure = () => {
+if (queued) return;
+queued = true;
+requestAnimationFrame(() => { queued = false; measures.forEach(run); realign(); });
+};
+const realign = () => document.getAnimations().forEach(animation => {
+if (animation.timeline && animation.timeline !== document.timeline && animation.playState === 'running') { animation.pause(); animation.play(); }
+});
+window.motionKit = {
+live,
+box(element) {
+if (!(element instanceof HTMLElement)) { const r = element.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height }; }
+let x = 0, y = 0, node = element;
+while (node) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
+return { x, y, w: element.offsetWidth, h: element.offsetHeight };
+},
+set(element, vars) { for (const [name, value] of Object.entries(vars)) element.style.setProperty(name, String(value)); },
+measure(fn) { if (!live) return; measures.add(fn); run(fn); },
+scene(id, fn) {
+if (!live) return;
+try { fn(); } catch (error) {
+console.error(`[motion-kit] scene ${id} failed; its section stays static`, error);
+document.querySelector(`style[data-8b-part="scene:${id}"]`)?.setAttribute('media', 'not all');
+}
+}
+};
+if (!live) { window.motionReady = Promise.resolve(); return; }
+const number = () => document.querySelectorAll('[data-8b-items]').forEach(group => {
+let items;
+try { items = [...group.querySelectorAll(group.getAttribute('data-8b-items'))]; } catch { return; }
+items.forEach((item, index) => { item.style.setProperty('--i', index); item.style.setProperty('--n', items.length); });
+});
+number();
+measures.add(number);
+requestAnimationFrame(realign);
+new ResizeObserver(remeasure).observe(document.body);
+document.fonts?.ready.then(remeasure);
+addEventListener('load', remeasure);
+window.motionReady = (document.fonts?.ready ?? Promise.resolve()).then(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live || !matchMedia('(pointer: fine)').matches) return;
+let target = scrollY, current = scrollY, last = 0, running = false, paused = false;
+const inner = (node, dy) => {
+for (; node && node !== document.body && node !== document.documentElement; node = node.parentElement) {
+if (!/(auto|scroll)/.test(getComputedStyle(node).overflowY) || node.scrollHeight <= node.clientHeight) continue;
+if (dy > 0 ? node.scrollTop + node.clientHeight < node.scrollHeight - 1 : node.scrollTop > 0) return true;
+}
+return false;
+};
+const step = now => {
+current += (target - current) * (1 - Math.exp(-5.3 * Math.min(0.05, (now - last) / 1000)));
+last = now;
+if (Math.abs(target - current) < 0.5) current = target;
+scrollTo({ top: current, behavior: 'instant' });
+if (current !== target) requestAnimationFrame(step); else running = false;
+};
+addEventListener('wheel', event => {
+if (paused || event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY) || inner(event.target, event.deltaY)) return;
+event.preventDefault();
+if (!running) target = current = scrollY;
+const unit = event.deltaMode === 1 ? 40 : event.deltaMode === 2 ? innerHeight : 1;
+target = Math.max(0, Math.min(document.documentElement.scrollHeight - innerHeight, target + event.deltaY * unit * 0.95));
+if (!running) { running = true; last = performance.now(); requestAnimationFrame(step); }
+}, { passive: false });
+kit.wheel = { stop() { paused = true; }, start() { paused = false; } };
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live) return;
+const at = element => {
+const own = /^(\d{1,3}(?:\.\d+)?)%$/.exec((element.getAttribute('data-8b-enter') || '').trim());
+return own && +own[1] <= 100 ? own[1] / 100 : 0.88;
+};
+let pending = [...document.querySelectorAll('[data-8b-motion]')].map(element => ({ element, y: 0, at: at(element) }));
+let queued = false;
+const check = () => {
+queued = false;
+pending = pending.filter(item => {
+if (item.y > scrollY + innerHeight * item.at) return true;
+item.element.classList.add('is-in');
+return false;
+});
+};
+const queue = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+kit.measure(() => { pending.forEach(item => { item.y = kit.box(item.element).y; }); queue(); });
+addEventListener('scroll', queue, { passive: true });
+})();
+(() => {
+const kit = window.motionKit;
+if (!kit.live) return;
+const sheet = new CSSStyleSheet();
+sheet.replaceSync('.line{display:block;overflow:clip;padding-block:.12em;margin-block:-.12em}.line:not(:last-child){margin-bottom:0}.line+.line{margin-top:-.24em}.line+.line>.line__in{text-indent:0}:where(h1,h2,h3,h4,h5,h6,p,div,blockquote,figcaption,dd,dt):where([data-8b-split="lines"]:has(>.line)){display:flow-root}.line__in{display:block}.kit-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}');
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+const sources = new WeakMap(), widths = new WeakMap();
+const graphemes = typeof Intl.Segmenter === 'function'
+? text => [...new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(text)].map(part => part.segment)
+: text => [...text];
+const span = (className, text) => { const element = document.createElement('span'); element.className = className; if (text != null) element.textContent = text; return element; };
+const split = element => {
+const mode = element.getAttribute('data-8b-split');
+if (sources.has(element)) element.innerHTML = sources.get(element); else sources.set(element, element.innerHTML);
+const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT), texts = [];
+while (walker.nextNode()) texts.push(walker.currentNode);
+let index = 0;
+for (const node of texts) {
+const fragment = document.createDocumentFragment();
+for (const piece of node.data.split(/(\s+)/)) {
+if (!piece) continue;
+if (/^\s+$/.test(piece)) { fragment.append(piece); continue; }
+const word = span('w');
+if (mode === 'chars') {
+word.setAttribute('aria-hidden', 'true');
+for (const character of graphemes(piece)) { const c = span('c', character); c.style.setProperty('--i', index++); word.append(c); }
+} else {
+word.textContent = piece;
+if (mode === 'words') word.style.setProperty('--i', index++);
+}
+fragment.append(word);
+}
+node.replaceWith(fragment);
+}
+if (mode === 'chars') element.append(span('kit-sr', element.textContent.replace(/\s+/g, ' ').trim()));
+if (mode === 'lines') {
+const lines = [];
+let top = null;
+for (const child of [...element.childNodes]) {
+const probe = child.nodeType === 1 ? child : null;
+const at = probe ? probe.getBoundingClientRect().top : top;
+if (probe && (top === null || Math.abs(at - top) > 2)) { lines.push([]); top = at; }
+if (!lines.length) lines.push([]);
+lines.at(-1).push(child);
+}
+lines.forEach((nodes, i) => {
+const line = span('line'), inner = span('line__in');
+line.style.setProperty('--i', i);
+nodes[0].before(line);
+inner.append(...nodes);
+line.append(inner);
+});
+index = lines.length;
+widths.set(element, element.clientWidth);
+}
+element.style.setProperty('--n', index);
+};
+const pending = [];
+let busy = false;
+const drain = () => {
+if (busy) return;
+const element = pending.shift();
+if (!element) return;
+busy = true;
+setTimeout(() => { try { split(element); } catch (error) { console.error('[motion-kit] split failed', error); } busy = false; drain(); }, 0);
+};
+const near = new IntersectionObserver(entries => entries.forEach(entry => {
+if (!entry.isIntersecting) return;
+near.unobserve(entry.target);
+pending.push(entry.target);
+drain();
+}), { rootMargin: '100% 0px 100% 0px' });
+(document.fonts?.ready ?? Promise.resolve()).then(() => document.querySelectorAll('[data-8b-split]').forEach(element => near.observe(element)));
+kit.measure(() => document.querySelectorAll('[data-8b-split="lines"]').forEach(element => {
+if (sources.has(element) && widths.get(element) !== element.clientWidth) { pending.push(element); drain(); }
+}));
+})();
+(() => {
+if (!window.motionKit.live) return;
+const sheet = new CSSStyleSheet();
+sheet.replaceSync('[data-8b-off],[data-8b-off]::before,[data-8b-off]::after{animation-play-state:paused!important}');
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+const watch = new IntersectionObserver(entries => entries.forEach(entry => entry.target.toggleAttribute('data-8b-off', !entry.isIntersecting)));
+const watched = new WeakSet();
+const scan = () => document.getAnimations().forEach(animation => {
+const element = animation.effect?.target;
+if (!element || watched.has(element) || animation.effect.getTiming().iterations !== Infinity || animation.timeline !== document.timeline) return;
+watched.add(element);
+watch.observe(element);
+});
+scan();
+addEventListener('load', scan);
+document.addEventListener('animationstart', scan, true);
 })();
 </script>
-<script data-8b-part="page-init">
-gsap.registerPlugin(ScrollTrigger, SplitText);
-function refreshScroll() {
-  ScrollTrigger.sort();
-  ScrollTrigger.refresh();
-}
-gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-  const bar = document.querySelector('#nav .nav__bar');
-  const lenis = window.lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95, anchors: { offset: -(bar ? bar.offsetHeight : 0) } });
-  const tick = time => lenis.raf(time * 1000);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(tick);
-  gsap.ticker.lagSmoothing(0);
-  return () => { gsap.ticker.remove(tick); gsap.ticker.lagSmoothing(500, 33); lenis.destroy(); window.lenis = null; };
-});
-</script>
-<script data-8b-part="motion">
-const effects = {
-  peek(frame, vars = {}) {
-    return gsap.fromTo(frame.firstElementChild, { yPercent: 42 }, { yPercent: 0, ease: 'none', ...vars });
-  },
-  rise(heading, vars = {}) {
-    const split = SplitText.create(heading, { type: 'lines', mask: 'lines' });
-    const timeline = gsap.timeline({ ...vars, onComplete() { split.revert(); } });
-    timeline.from(split.lines, { yPercent: 108, duration: .9, stagger: .09, ease: 'power3.out' });
-    timeline.split = split;
-    return timeline;
-  },
-  curl(svg, vars = {}) {
-    return gsap.fromTo(svg.querySelector('path'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', ...vars });
-  }
-};
-document.querySelectorAll('[data-8b-section]').forEach(section => {
-  const first = section.getBoundingClientRect().top < window.innerHeight;
-  const peeks = section.querySelectorAll('[data-8b-motion~="peek"]');
-  if (peeks.length) {
-    const id = `effect:peek:${section.id}`;
-    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-      peeks.forEach((frame, i) => ScrollTrigger.create({
-        id: `${id}:${i}`, trigger: frame, start: 'top bottom', end: 'top 40%', scrub: .5,
-        animation: effects.peek(frame)
-      }));
-    }), { first, id });
-  }
-  const rises = section.querySelectorAll('[data-8b-motion~="rise"]');
-  if (rises.length) {
-    const id = `effect:rise:${section.id}`;
-    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-      const timelines = [...rises].map((heading, i) => {
-        const timeline = effects.rise(heading, { paused: true });
-        ScrollTrigger.create({ id: `${id}:${i}`, trigger: heading, start: 'top 88%', once: true, animation: timeline, toggleActions: 'play play none none' });
-        return timeline;
-      });
-      return () => timelines.forEach(timeline => timeline.split.revert());
-    }), { first, id });
-  }
-  const curls = section.querySelectorAll('[data-8b-motion~="curl"]');
-  if (curls.length) {
-    const id = `effect:curl:${section.id}`;
-    queueMotion(() => gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-      curls.forEach((svg, i) => ScrollTrigger.create({
-        id: `${id}:${i}`, trigger: svg, start: 'top 95%', end: 'bottom 45%', scrub: .6,
-        animation: effects.curl(svg)
-      }));
-    }), { first, id });
-  }
-});
-</script>
-<script data-8b-part="scene:opening">
-queueMotion(() => {
-  const section = document.getElementById('opening');
-  const first = section.querySelector('.op-s1');
-  const second = section.querySelector('.op-s2');
-  const ink = section.querySelector('.op-ink');
-  const inkCurl = ink.querySelector('.op-ink__curl path');
-  const cells = ['.op-a', '.op-e', '.op-c', '.op-d', '.op-b'].map(selector => section.querySelector(selector));
-  const windows = gsap.utils.toArray('.op-win', section);
-  gsap.matchMedia().add({
-    wide: '(min-width: 768px) and (prefers-reduced-motion: no-preference)',
-    narrow: '(max-width: 767.98px) and (prefers-reduced-motion: no-preference)'
-  }, context => {
-    const { wide } = context.conditions;
-    section.setAttribute('data-ink', '');
-    const shear = wide
-      ? [[-.03, -.16], [.05, -.3], [-.06, .02], [.01, -.1], [.06, -.2]]
-      : [[-.04, -.12], [.06, -.22], [-.05, .02], [.02, -.08], [-.06, -.18]];
-    const house = section.querySelector('.op-house');
-    const jitter = [.03, 0, .05, .02, .06, .01];
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { id: 'opening', trigger: second, start: 'top bottom', end: 'top top', scrub: .5, invalidateOnRefresh: true }
-    });
-    timeline.fromTo(ink, { y: 0 }, { y: () => -1.02 * first.offsetHeight, duration: 1 }, 0);
-    timeline.fromTo(inkCurl, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: .42 }, .06);
-    cells.forEach((cell, i) => timeline.fromTo(cell, { x: 0, y: 0 }, {
-      x: () => shear[i][0] * window.innerWidth, y: () => shear[i][1] * window.innerHeight, duration: .85, ease: 'power1.in'
-    }, 0));
-    windows.forEach((win, i) => {
-      const at = Math.min(.84, (house.offsetTop + win.offsetTop) / first.offsetHeight + .05 + jitter[i % jitter.length]);
-      timeline.fromTo(win, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: .14, ease: 'power1.out' }, at);
-      const photo = win.querySelector('img');
-      if (photo) timeline.fromTo(photo, { yPercent: 45 }, { yPercent: 0, duration: .2, ease: 'power2.out' }, at + .04);
-    });
-    return () => section.removeAttribute('data-ink');
-  });
-}, { first: true });
-</script>
-<script data-8b-part="scene:rooms">
-queueMotion(() => {
+<script data-8b-part="scene-script:rooms">
+motionKit.scene('rooms', () => {
   const section = document.getElementById('rooms');
-  const rooms = gsap.utils.toArray('.rm-room', section);
-  const towerName = section.querySelector('.rm-tower .rm-name');
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const side = () => Math.min(...rooms.map(room => Math.min(room.offsetWidth, room.offsetHeight))) * (window.innerWidth < 768 ? .62 : .9);
-    rooms.forEach((room, i) => {
-      const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: { id: `rooms:${i}`, trigger: room, start: 'top 88%', end: 'bottom 78%', scrub: .5, invalidateOnRefresh: true }
-      });
-      timeline.fromTo(room, {
-        clipPath: () => { const s = side(); return `inset(${room.offsetHeight - s}px ${room.offsetWidth - s}px 0px 0px)`; }
-      }, { clipPath: 'inset(0px 0px 0px 0px)', duration: 1, ease: 'power1.inOut' }, 0);
-      if (room.contains(towerName)) timeline.fromTo(towerName, { rotation: 0 }, { rotation: -90, duration: .7, ease: 'power2.inOut' }, .3);
-    });
-  });
+  const rooms = [...section.querySelectorAll('.rm-room')];
+  if (!rooms.length) throw new Error('rooms: no .rm-room panels');
+  motionKit.measure(() => motionKit.set(section, { '--rooms-side': `${Math.min(...rooms.map(room => Math.min(room.offsetWidth, room.offsetHeight)))}px` }));
 });
 </script>
-<script data-8b-part="scene:day">
-queueMotion(() => {
+<script data-8b-part="scene-script:day">
+motionKit.scene('day', () => {
   const section = document.getElementById('day');
-  const stage = section.querySelector('.dy-stage');
   const rail = section.querySelector('.dy-rail');
   const track = section.querySelector('.dy-track');
-  const sky = section.querySelector('.dy-sky');
-  const disc = section.querySelector('.dy-disc');
-  const tokens = getComputedStyle(document.documentElement);
-  const colors = ['--color-3', '--color-10', '--color-9', '--color-6', '--color-7', '--color-5'].map(token => tokens.getPropertyValue(token).trim());
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    section.setAttribute('data-track', '');
-    const travel = () => Math.max(0, track.scrollWidth - rail.clientWidth);
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { id: 'day', trigger: section, start: 'top top', end: () => `+=${Math.max(window.innerHeight, travel() * 1.15)}`, pin: stage, scrub: .6, invalidateOnRefresh: true }
-    });
-    timeline.fromTo(track, { x: 0 }, { x: () => -travel(), duration: 1 }, 0);
-    colors.slice(1).forEach((color, i) => timeline.to(sky, { backgroundColor: color, duration: 1 / (colors.length - 1) }, i / (colors.length - 1)));
-    timeline.fromTo(disc, { x: () => sky.clientWidth * .06 }, { x: () => sky.clientWidth - disc.offsetWidth - sky.clientWidth * .06, duration: 1 }, 0);
-    timeline.fromTo(disc, { y: () => sky.clientHeight + 4 }, { y: () => sky.clientHeight * .12, duration: .42, ease: 'sine.out' }, .02);
-    timeline.to(disc, { y: () => sky.clientHeight + 4, duration: .4, ease: 'sine.in' }, .58);
-    return () => section.removeAttribute('data-track');
-  });
-});
-</script>
-<script data-8b-part="scene:courtyard">
-queueMotion(() => {
-  const section = document.getElementById('courtyard');
-  const view = section.querySelector('.cy-window');
-  const panes = gsap.utils.toArray('.cy-pane', view);
-  const tints = gsap.utils.toArray('.cy-tint', view);
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const offsets = [[-5, -20], [4, 16], [-3, -11], [6, 22], [-6, 12], [3, -18]];
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { id: 'courtyard', trigger: view, start: 'top 92%', end: 'center 52%', scrub: .6 }
-    });
-    panes.forEach((pane, i) => timeline.fromTo(pane, { xPercent: offsets[i][0], yPercent: offsets[i][1] }, { xPercent: 0, yPercent: 0, duration: 1, ease: 'power2.out' }, 0));
-    tints.forEach((tint, i) => timeline.fromTo(tint, { opacity: .94 }, { opacity: 0, duration: .55 }, .3 + i * .03));
-  });
-});
-</script>
-<script data-8b-part="scene:quiet">
-queueMotion(() => {
-  const section = document.getElementById('quiet');
-  const list = section.querySelector('.qt-rules');
-  const rules = gsap.utils.toArray('.qt-rule', list);
-  const words = rules.map(rule => rule.querySelector('.qt-word'));
-  const loud = getComputedStyle(document.documentElement).getPropertyValue('--color-3').trim();
-  gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
-    const rest = rules.map(rule => getComputedStyle(rule).backgroundColor);
-    const weight = getComputedStyle(words[0]).fontWeight;
-    const scale = window.innerWidth < 768 ? .45 : 1;
-    const tilt = [[-7, -50, 34], [6, 40, -26], [-5, -26, 30], [8, 56, -36]];
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { id: 'quiet', trigger: list, start: 'top 95%', end: 'center 56%', scrub: .6 }
-    });
-    rules.forEach((rule, i) => {
-      timeline.fromTo(rule, { rotation: tilt[i][0] * scale, y: tilt[i][1] * scale, x: tilt[i][2] * scale }, { rotation: 0, y: 0, x: 0, duration: 1, ease: 'power2.out' }, 0);
-      timeline.fromTo(rule, { backgroundColor: loud }, { backgroundColor: rest[i], duration: .6 }, .35);
-      timeline.fromTo(words[i], { fontWeight: 900 }, { fontWeight: weight, duration: .7 }, .25);
-    });
-  });
-});
-</script>
-<script data-8b-part="scene:contact">
-queueMotion(() => {
-  const section = document.getElementById('contact');
-  const grid = section.querySelector('.ct-grid');
-  const call = section.querySelector('.ct-call');
-  const write = section.querySelector('.ct-write');
-  const visit = section.querySelector('.ct-visit');
-  const hours = section.querySelector('.ct-hours');
-  gsap.matchMedia().add({
-    wide: '(min-width: 900.02px) and (prefers-reduced-motion: no-preference)',
-    narrow: '(max-width: 900px) and (prefers-reduced-motion: no-preference)'
-  }, context => {
-    const { wide } = context.conditions;
-    const timeline = gsap.timeline({
-      defaults: { ease: 'none' },
-      scrollTrigger: { id: 'contact', trigger: grid, start: 'top 92%', end: () => wide ? 'top 22%' : 'top 40%', scrub: .6, invalidateOnRefresh: true }
-    });
-    timeline.fromTo(call, { xPercent: wide ? -80 : -40 }, { xPercent: 0, duration: 1, ease: 'power2.out' }, 0)
-      .fromTo(write, { xPercent: wide ? 80 : 40 }, { xPercent: 0, duration: 1, ease: 'power2.out' }, 0)
-      .fromTo(visit, { yPercent: -60 }, { yPercent: 0, duration: 1, ease: 'power2.out' }, 0)
-      .fromTo(hours, { yPercent: 60 }, { yPercent: 0, duration: 1, ease: 'power2.out' }, 0);
-    if (wide) {
-      timeline.fromTo(call.querySelector('.ct-label'), { rotation: 0 }, { rotation: -90, duration: .6, ease: 'power2.inOut' }, .35)
-        .fromTo(write.querySelector('.ct-label'), { rotation: 0 }, { rotation: 90, duration: .6, ease: 'power2.inOut' }, .35);
-    }
-  });
+  if (!rail || !track) throw new Error('day: no .dy-rail or .dy-track');
+  motionKit.measure(() => motionKit.set(section, { '--day-travel': `${Math.max(0, track.scrollWidth - rail.clientWidth)}px` }));
 });
 </script>
 </body>
